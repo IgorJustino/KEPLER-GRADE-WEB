@@ -1,343 +1,679 @@
+/* ==========================================================================
+   KEPLER — CELESTIAL ATLAS & OBSERVATORY DESIGN SYSTEM
+   Design reformulado em harmonia com o mapa astronômico/cartográfico de fundo
+   ========================================================================== */
+
 :root {
   --kepler-atlas: url("../assets/kepler-atlas-newspaper.webp");
-  --kepler-blue: #343a61;
-  --kepler-blue-deep: #202641;
-  --kepler-cyan: #41d9ff;
-  --kepler-paper: #f6f2e8;
-  --kepler-ink: #241f2c;
-  --kepler-panel-border: rgba(52, 58, 97, 0.2);
-  --md-primary-fg-color: #2c3255;
-  --md-accent-fg-color: #d95824;
+  --kepler-cyan: #38d6fc;
+  --kepler-cyan-glow: rgba(56, 214, 252, 0.35);
+  --kepler-amber: #ffb443;
+  --kepler-amber-glow: rgba(255, 180, 67, 0.28);
+  --kepler-indigo: #4e62d4;
+  --kepler-void: #070c18;
+  --kepler-void-deep: #050811;
+  --kepler-paper-light: #fbf8f1;
+  --kepler-ink-light: #201a14;
+
+  /* Padrão Material */
+  --md-primary-fg-color: #0d1628;
+  --md-accent-fg-color: var(--kepler-cyan);
 }
 
-[data-md-color-scheme="slate"] {
-  --md-default-bg-color: #07111f;
-  --md-default-fg-color: #f4f7fa;
-  --md-primary-fg-color: #262c4b;
-  --md-accent-fg-color: var(--kepler-cyan);
-  --md-typeset-a-color: var(--kepler-cyan);
-  --kepler-panel-border: rgba(180, 190, 232, 0.18);
-}
+/* ==========================================================================
+   1. BACKGROUND COM O MAPA DO ATLAS (INTEGRAÇÃO COMPLETA)
+   ========================================================================== */
 
 html {
-  background: var(--kepler-blue-deep);
+  min-height: 100%;
+  background: var(--kepler-void-deep);
 }
 
+/* Tema Escuro / Slate (Padrão Astronômico de Observatório) */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #070c18;
+  --md-default-fg-color: #e5edf5;
+  --md-primary-fg-color: #0b1424;
+  --md-accent-fg-color: var(--kepler-cyan);
+  --md-typeset-a-color: var(--kepler-cyan);
+}
+
+[data-md-color-scheme="slate"] body,
 body {
   min-height: 100vh;
-  background-color: var(--kepler-blue-deep);
+  margin: 0;
+  color: #e5edf5;
+  background-color: #070c18 !important;
   background-image:
-    linear-gradient(135deg, rgba(42, 48, 82, 0.84), rgba(30, 36, 61, 0.94)),
-    var(--kepler-atlas);
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  background-attachment: fixed;
+    /* Vinheta radial celestial: preserva o mapa no centro com atmosfera de céu noturno */
+    radial-gradient(ellipse at 50% 12%, rgba(20, 36, 68, 0.42) 0%, rgba(7, 12, 24, 0.72) 55%, rgba(4, 7, 14, 0.94) 100%),
+    linear-gradient(180deg, rgba(8, 14, 28, 0.55) 0%, rgba(6, 11, 20, 0.8) 100%),
+    var(--kepler-atlas) !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+/* Tema Claro (Pergaminho de Cartografia Renascentista) */
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #f7f2e7;
+  --md-default-fg-color: var(--kepler-ink-light);
+  --md-primary-fg-color: #1b263b;
+  --md-accent-fg-color: #d4631e;
+  --md-typeset-a-color: #c05214;
+}
+
+[data-md-color-scheme="default"] body {
+  color: var(--kepler-ink-light);
+  background-color: #ebdcc5 !important;
+  background-image:
+    radial-gradient(ellipse at 50% 12%, rgba(255, 252, 245, 0.45) 0%, rgba(240, 230, 214, 0.72) 55%, rgba(210, 192, 165, 0.92) 100%),
+    linear-gradient(180deg, rgba(250, 245, 236, 0.6) 0%, rgba(235, 222, 202, 0.82) 100%),
+    var(--kepler-atlas) !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
 }
 
 .md-container,
-.md-main {
-  background: transparent;
+.md-main,
+.md-main__inner {
+  background: transparent !important;
 }
 
-.md-header,
-.md-tabs {
-  border-color: rgba(225, 229, 255, 0.14);
-  background: rgba(38, 44, 75, 0.94);
-  backdrop-filter: blur(14px) saturate(0.8);
-}
+/* ==========================================================================
+   2. HEADER & TABS EM VIDRO FOSCO CRISTALINO
+   ========================================================================== */
 
 .md-header {
-  border-bottom: 1px solid rgba(225, 229, 255, 0.14);
-  box-shadow: none;
+  border-bottom: 1px solid rgba(65, 217, 255, 0.18) !important;
+  background: rgba(7, 13, 24, 0.78) !important;
+  backdrop-filter: blur(22px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(130%) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35) !important;
 }
+
+[data-md-color-scheme="default"] .md-header {
+  border-bottom: 1px solid rgba(175, 140, 95, 0.28) !important;
+  background: rgba(252, 248, 240, 0.85) !important;
+  box-shadow: 0 4px 20px rgba(50, 35, 18, 0.1) !important;
+}
+
+.md-tabs {
+  border-bottom: 1px solid rgba(65, 217, 255, 0.12) !important;
+  background: rgba(10, 18, 34, 0.68) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+[data-md-color-scheme="default"] .md-tabs {
+  border-bottom: 1px solid rgba(175, 140, 95, 0.22) !important;
+  background: rgba(246, 240, 228, 0.78) !important;
+}
+
+.md-tabs__link {
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.md-tabs__link:hover,
+.md-tabs__item--active .md-tabs__link {
+  opacity: 1 !important;
+  color: var(--kepler-cyan) !important;
+  text-shadow: 0 0 12px var(--kepler-cyan-glow);
+}
+
+[data-md-color-scheme="default"] .md-tabs__item--active .md-tabs__link {
+  color: #ba4f11 !important;
+  text-shadow: none;
+}
+
+/* ==========================================================================
+   3. PAINEL PRINCIPAL DE CONTEÚDO (GLASSMORPHISM CELESTIAL)
+   ========================================================================== */
 
 .md-content__inner {
   position: relative;
-  margin-bottom: 2rem;
-  padding: clamp(1.15rem, 3vw, 2.4rem);
-  border: 1px solid var(--kepler-panel-border);
-  border-radius: 0.7rem 0.25rem 0.25rem 0.7rem;
-  background: rgba(246, 242, 232, 0.92);
+  margin-top: 1.2rem;
+  margin-bottom: 3rem;
+  padding: clamp(1.4rem, 4vw, 3rem) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(75, 155, 245, 0.18) !important;
+  background: rgba(9, 16, 30, 0.82) !important;
+  backdrop-filter: blur(24px) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(135%) !important;
   box-shadow:
-    -0.45rem 0.7rem 0 rgba(24, 28, 48, 0.2),
-    0 1.5rem 3.5rem rgba(13, 16, 29, 0.34),
-    inset 1px 0 rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px) saturate(0.78);
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 24px rgba(56, 214, 252, 0.04) !important;
 }
 
-.md-content__inner::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 0.42rem;
-  border-radius: 0.7rem 0 0 0.7rem;
-  background: linear-gradient(90deg, rgba(75, 65, 53, 0.2), rgba(255, 255, 255, 0.52), transparent);
-  pointer-events: none;
+[data-md-color-scheme="default"] .md-content__inner {
+  border: 1px solid rgba(170, 135, 92, 0.3) !important;
+  background: rgba(254, 251, 245, 0.88) !important;
+  box-shadow:
+    0 20px 50px rgba(65, 45, 22, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
 }
 
-[data-md-color-scheme="slate"] .md-content__inner {
-  background: rgba(31, 37, 63, 0.9);
-  box-shadow:
-    -0.45rem 0.7rem 0 rgba(5, 8, 17, 0.42),
-    0 1.5rem 3.5rem rgba(3, 5, 12, 0.5),
-    inset 1px 0 rgba(255, 255, 255, 0.08);
-}
+/* ==========================================================================
+   4. SIDEBARS (MENU LATERAL & ÍNDICE DO OBSERVATÓRIO)
+   ========================================================================== */
 
 .md-sidebar__scrollwrap {
-  margin: 0.6rem 0;
-  padding: 0.7rem;
-  border: 1px solid rgba(218, 223, 250, 0.18);
-  border-radius: 0.4rem;
-  color: #f2f3fa;
-  background: rgba(38, 44, 75, 0.78);
-  box-shadow: 0 0.8rem 2rem rgba(13, 16, 29, 0.2);
-  backdrop-filter: blur(16px) saturate(0.8);
+  margin: 1.2rem 0 !important;
+  padding: 1rem 0.9rem !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(75, 155, 245, 0.14) !important;
+  background: rgba(8, 14, 27, 0.72) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.38) !important;
 }
 
-.md-sidebar__scrollwrap .md-nav__link {
-  color: rgba(245, 246, 252, 0.78);
+[data-md-color-scheme="default"] .md-sidebar__scrollwrap {
+  border: 1px solid rgba(170, 135, 92, 0.25) !important;
+  background: rgba(250, 245, 236, 0.84) !important;
+  box-shadow: 0 10px 30px rgba(60, 42, 20, 0.08) !important;
 }
 
-.md-sidebar__scrollwrap .md-nav__link--active,
-.md-sidebar__scrollwrap .md-nav__link:hover {
-  color: #fff;
+.md-nav__link {
+  border-radius: 8px;
+  padding: 0.32rem 0.6rem !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.md-typeset h1,
-.md-typeset h2,
-.md-typeset h3 {
-  font-weight: 750;
-  letter-spacing: -0.035em;
+.md-nav__link:hover {
+  color: var(--kepler-cyan) !important;
+  background: rgba(56, 214, 252, 0.08);
 }
 
-[data-md-color-scheme="default"] .md-typeset {
-  color: var(--kepler-ink);
+.md-nav__link--active {
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  background: linear-gradient(90deg, rgba(56, 214, 252, 0.18) 0%, rgba(56, 214, 252, 0.04) 100%) !important;
+  border-left: 3px solid var(--kepler-cyan) !important;
 }
 
-[data-md-color-scheme="default"] .md-typeset h1,
-[data-md-color-scheme="default"] .md-typeset h2,
-[data-md-color-scheme="default"] .md-typeset h3 {
-  color: #2f2940;
+[data-md-color-scheme="default"] .md-nav__link:hover {
+  color: #ba4f11 !important;
+  background: rgba(186, 79, 17, 0.08);
 }
+
+[data-md-color-scheme="default"] .md-nav__link--active {
+  color: #1a1612 !important;
+  background: rgba(186, 79, 17, 0.12) !important;
+  border-left: 3px solid #ba4f11 !important;
+}
+
+/* ==========================================================================
+   5. HERO CARTOGRÁFICO DE ALTO IMPACTO (NOVO OBSERVATÓRIO KEPLER)
+   ========================================================================== */
 
 .kepler-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 3.5rem);
+  gap: clamp(1.8rem, 4vw, 3.5rem);
   overflow: hidden;
-  margin: 0 0 2rem;
-  padding: clamp(2.5rem, 6vw, 4.6rem) clamp(1.15rem, 5vw, 3.6rem);
-  border: 1px solid rgba(224, 229, 255, 0.18);
-  border-radius: 0.75rem;
-  color: #f4f7fa;
-  text-align: center;
+  margin: 0 0 2.5rem;
+  padding: clamp(2rem, 5vw, 3.6rem) clamp(1.5rem, 4vw, 3rem);
+  border-radius: 20px;
+  border: 1px solid rgba(75, 170, 255, 0.28);
   background:
-    radial-gradient(circle at 78% 35%, rgba(133, 144, 198, 0.28), transparent 25rem),
-    linear-gradient(135deg, #292f51 0%, #3b4269 62%, #505676 100%);
-  box-shadow: 0 1.2rem 2.8rem rgba(8, 10, 22, 0.32);
+    radial-gradient(circle at 85% 20%, rgba(56, 214, 252, 0.18), transparent 22rem),
+    radial-gradient(circle at 15% 85%, rgba(255, 180, 67, 0.12), transparent 18rem),
+    linear-gradient(135deg, rgba(12, 22, 44, 0.88) 0%, rgba(7, 13, 26, 0.94) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
+[data-md-color-scheme="default"] .kepler-hero {
+  border: 1px solid rgba(185, 145, 95, 0.35);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(235, 130, 40, 0.12), transparent 20rem),
+    linear-gradient(135deg, rgba(254, 251, 245, 0.94) 0%, rgba(244, 236, 222, 0.96) 100%);
+  box-shadow:
+    0 20px 50px rgba(70, 48, 22, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Anéis celestiais e esferas keplerianas decorativas */
 .kepler-hero::before {
   content: "";
   position: absolute;
-  top: 13%;
-  right: 7%;
-  width: 22rem;
-  height: 22rem;
-  background: rgba(255, 255, 255, 0.035);
-  filter: blur(1px);
-  transform: rotate(8deg);
+  top: -8rem;
+  right: -5rem;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 50%;
+  border: 1px dashed rgba(56, 214, 252, 0.22);
+  pointer-events: none;
+  animation: kepler-spin-slow 120s linear infinite;
+}
+
+.kepler-hero::after {
+  content: "";
+  position: absolute;
+  top: -3rem;
+  right: 0rem;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 180, 67, 0.2);
+  pointer-events: none;
+}
+
+@keyframes kepler-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .kepler-hero-copy {
   position: relative;
   z-index: 2;
-  width: min(100%, 46rem);
 }
 
-.kepler-kicker {
+.kepler-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 214, 252, 0.3);
+  background: rgba(56, 214, 252, 0.1);
   color: var(--kepler-cyan);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+[data-md-color-scheme="default"] .kepler-badge {
+  border-color: rgba(190, 85, 20, 0.3);
+  background: rgba(190, 85, 20, 0.08);
+  color: #ba4f11;
+}
+
+.kepler-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--kepler-cyan);
+  box-shadow: 0 0 10px var(--kepler-cyan);
+  animation: kepler-pulse 2s infinite ease-in-out;
+}
+
+[data-md-color-scheme="default"] .kepler-badge-dot {
+  background: #ba4f11;
+  box-shadow: 0 0 8px rgba(186, 79, 17, 0.6);
+}
+
+@keyframes kepler-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
 }
 
 .kepler-hero h1 {
-  max-width: 13ch;
-  margin: 0.4rem auto 0.75rem;
-  color: #fff;
-  font-size: clamp(2.2rem, 5.5vw, 4.7rem);
-  line-height: 0.95;
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+[data-md-color-scheme="default"] .kepler-hero h1 {
+  color: #1c1712;
 }
 
 .kepler-hero p {
-  max-width: 42rem;
-  margin: 0 auto 1.4rem;
-  color: #d9deef;
-  font-size: 1.08rem;
+  margin: 0 0 1.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #c2d4ea;
+  max-width: 38rem;
+}
+
+[data-md-color-scheme="default"] .kepler-hero p {
+  color: #4f4438;
 }
 
 .kepler-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.7rem;
+  align-items: center;
+  gap: 0.9rem;
 }
 
-.kepler-button {
-  display: inline-block;
-  padding: 0.65rem 1rem;
-  border: 1px solid var(--kepler-cyan);
-  border-radius: 999px;
-  color: #07111f !important;
-  background: var(--kepler-cyan);
+.kepler-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.72rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
   font-weight: 700;
+  color: #050b16 !important;
+  background: linear-gradient(135deg, #4ce0ff 0%, #20b8f0 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 8px 24px rgba(32, 184, 240, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none !important;
 }
 
-.kepler-button.secondary {
-  color: #f4f7fa !important;
-  background: transparent;
+.kepler-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 30px rgba(32, 184, 240, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  filter: brightness(1.06);
 }
 
-.kepler-journal-stage {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  width: min(100%, 36rem);
-  min-width: 0;
-  justify-items: center;
-  perspective: 90rem;
+.kepler-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.72rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #e5edf5 !important;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none !important;
 }
 
-.kepler-journal-book {
-  position: relative;
-  display: flex;
-  width: 100%;
-  max-width: 36rem;
-  aspect-ratio: 1.48;
-  filter: drop-shadow(0 2rem 1.5rem rgba(8, 10, 22, 0.45));
-  transform: rotateX(5deg) rotateZ(-1deg);
-  transform-style: preserve-3d;
+[data-md-color-scheme="default"] .kepler-btn-secondary {
+  color: #2b231a !important;
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
-.kepler-journal-book::before,
-.kepler-journal-book::after {
-  content: "";
-  position: absolute;
-  top: 3%;
-  bottom: -2%;
-  width: 48%;
-  border-radius: 0.25rem;
-  background: #b8ad98;
-  box-shadow: 0 0 0 1px rgba(56, 45, 32, 0.16);
+.kepler-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(56, 214, 252, 0.4);
+  transform: translateY(-2px);
 }
 
-.kepler-journal-book::before {
-  left: 1%;
-  transform: translate(-0.55rem, 0.45rem) rotate(-1.5deg);
-}
+/* ==========================================================================
+   6. PAINEL DE INSTRUMENTO CARTOGRÁFICO DO HERO (CELESTIAL DISPLAY)
+   ========================================================================== */
 
-.kepler-journal-book::after {
-  right: 1%;
-  transform: translate(0.55rem, 0.45rem) rotate(1.5deg);
-}
-
-.kepler-journal-page {
+.kepler-instrument-display {
   position: relative;
   z-index: 2;
-  width: 50%;
-  min-width: 0;
-  height: 100%;
-  border: 1px solid rgba(69, 55, 38, 0.42);
-  background-color: #eee7d7;
-  background-image:
-    linear-gradient(rgba(240, 231, 207, 0.18), rgba(34, 40, 68, 0.06)),
-    var(--kepler-atlas);
-  background-repeat: no-repeat;
-  background-size: 200% 100%;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
+  border-radius: 16px;
+  border: 1px solid rgba(75, 170, 255, 0.3);
+  background: rgba(7, 13, 26, 0.85);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: 1.3rem;
+  overflow: hidden;
 }
 
-.kepler-journal-page-left {
-  border-radius: 0.45rem 0.08rem 0.08rem 0.45rem;
-  background-position: left center;
-  box-shadow: inset -1.1rem 0 1.4rem rgba(46, 36, 27, 0.3);
-  transform-origin: right center;
-  animation: kepler-open-left 900ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+[data-md-color-scheme="default"] .kepler-instrument-display {
+  border-color: rgba(185, 145, 95, 0.32);
+  background: rgba(250, 244, 234, 0.9);
+  box-shadow: 0 14px 34px rgba(70, 48, 22, 0.1);
 }
 
-.kepler-journal-page-right {
-  border-radius: 0.08rem 0.45rem 0.45rem 0.08rem;
-  background-position: right center;
-  box-shadow: inset 1.1rem 0 1.4rem rgba(46, 36, 27, 0.28);
-  transform-origin: left center;
-  animation: kepler-open-right 900ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
-}
-
-.kepler-journal-controls {
+.kepler-instrument-header {
   display: flex;
-  gap: 0.55rem;
-  margin-top: 1.4rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.kepler-journal-controls span {
-  width: 0.62rem;
-  height: 0.62rem;
-  border: 2px solid rgba(47, 53, 86, 0.78);
-  border-radius: 50%;
-  background: rgba(246, 242, 232, 0.94);
-  box-shadow: 0 0.25rem 0.7rem rgba(9, 11, 24, 0.24);
+[data-md-color-scheme="default"] .kepler-instrument-header {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
-.kepler-journal-controls span:first-child {
-  border-color: #f1f2f8;
-  background: #49517f;
+.kepler-instrument-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8fa6c4;
 }
+
+[data-md-color-scheme="default"] .kepler-instrument-title {
+  color: #726252;
+}
+
+.kepler-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(46, 213, 115, 0.14);
+  color: #2ed573;
+  border: 1px solid rgba(46, 213, 115, 0.3);
+}
+
+.kepler-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.kepler-metric-card {
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+[data-md-color-scheme="default"] .kepler-metric-card {
+  border-color: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.kepler-metric-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(56, 214, 252, 0.25);
+  transform: translateY(-2px);
+}
+
+.kepler-metric-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7890a8;
+  margin-bottom: 0.3rem;
+}
+
+[data-md-color-scheme="default"] .kepler-metric-label {
+  color: #8c7664;
+}
+
+.kepler-metric-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+[data-md-color-scheme="default"] .kepler-metric-value {
+  color: #1a1612;
+}
+
+.kepler-metric-desc {
+  font-size: 0.72rem;
+  color: #9eb5cc;
+  margin-top: 0.2rem;
+  line-height: 1.35;
+}
+
+[data-md-color-scheme="default"] .kepler-metric-desc {
+  color: #635345;
+}
+
+.kepler-eng-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 0.4rem;
+}
+
+.kepler-eng-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   7. CARDS EM GLASSMORPHISM (PRODUTO, REQUISITOS, ARQUITETURA, DEV)
+   ========================================================================== */
 
 .kepler-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin: 1.8rem 0 2.5rem;
 }
 
 .kepler-card {
-  padding: 1.15rem;
-  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 14%, transparent);
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--md-default-bg-color) 94%, var(--kepler-cyan));
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(75, 155, 245, 0.18);
+  background: rgba(12, 20, 36, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none !important;
+  color: inherit !important;
+  overflow: hidden;
+}
+
+[data-md-color-scheme="default"] .kepler-card {
+  border-color: rgba(175, 140, 95, 0.28);
+  background: rgba(252, 248, 240, 0.85);
+  box-shadow:
+    0 8px 24px rgba(65, 45, 22, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.kepler-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 214, 252, 0.45);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(56, 214, 252, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+[data-md-color-scheme="default"] .kepler-card:hover {
+  border-color: rgba(186, 79, 17, 0.45);
+  box-shadow:
+    0 16px 36px rgba(65, 45, 22, 0.15),
+    0 0 20px rgba(186, 79, 17, 0.1);
+}
+
+.kepler-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  background: rgba(56, 214, 252, 0.12);
+  border: 1px solid rgba(56, 214, 252, 0.24);
+  color: var(--kepler-cyan);
+}
+
+[data-md-color-scheme="default"] .kepler-card-icon {
+  background: rgba(186, 79, 17, 0.1);
+  border-color: rgba(186, 79, 17, 0.22);
+  color: #ba4f11;
 }
 
 .kepler-card strong {
   display: block;
-  margin-bottom: 0.35rem;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.45rem;
+  color: #ffffff;
+}
+
+[data-md-color-scheme="default"] .kepler-card strong {
+  color: #1a1612;
 }
 
 .kepler-card p {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #a4b9d0;
 }
+
+[data-md-color-scheme="default"] .kepler-card p {
+  color: #5d4f40;
+}
+
+/* ==========================================================================
+   8. JORNADA DO PROJETO (TRILHA ORBITAL COM NÓS LUMINOSOS)
+   ========================================================================== */
 
 .kepler-rail {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  margin: 2rem 0;
+  gap: 0.5rem;
+  margin: 2.5rem 0 3rem;
   padding: 0;
   counter-reset: orbit;
+  list-style: none;
 }
 
 .kepler-rail li {
   position: relative;
-  padding: 2.4rem 0.4rem 0;
-  list-style: none;
+  padding: 3.2rem 0.5rem 0;
   text-align: center;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #c9dbed;
+}
+
+[data-md-color-scheme="default"] .kepler-rail li {
+  color: #4f4234;
 }
 
 .kepler-rail li::before {
@@ -345,122 +681,155 @@ body {
   content: counter(orbit, decimal-leading-zero);
   position: absolute;
   top: 0;
-  left: calc(50% - 1rem);
-  z-index: 1;
+  left: calc(50% - 1.35rem);
+  z-index: 2;
   display: grid;
-  width: 2rem;
-  height: 2rem;
+  width: 2.7rem;
+  height: 2.7rem;
   place-items: center;
-  border: 2px solid var(--kepler-cyan);
   border-radius: 50%;
+  border: 2px solid var(--kepler-cyan);
+  background: #091325;
   color: var(--kepler-cyan);
-  background: var(--kepler-blue-deep);
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow:
+    0 0 16px var(--kepler-cyan-glow),
+    inset 0 0 8px rgba(56, 214, 252, 0.2);
+  transition: all 0.25s ease;
+}
+
+[data-md-color-scheme="default"] .kepler-rail li::before {
+  border-color: #ba4f11;
+  background: #fbf8f2;
+  color: #ba4f11;
+  box-shadow: 0 4px 12px rgba(186, 79, 17, 0.2);
+}
+
+.kepler-rail li:hover::before {
+  transform: scale(1.12);
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
 .kepler-rail li:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: 0.95rem;
+  top: 1.35rem;
   left: 50%;
   width: 100%;
-  border-top: 2px solid color-mix(in srgb, var(--kepler-cyan) 38%, transparent);
+  height: 2px;
+  background: linear-gradient(90deg, rgba(56, 214, 252, 0.6) 0%, rgba(56, 214, 252, 0.2) 100%);
+  z-index: 1;
+}
+
+[data-md-color-scheme="default"] .kepler-rail li:not(:last-child)::after {
+  background: linear-gradient(90deg, rgba(186, 79, 17, 0.5) 0%, rgba(186, 79, 17, 0.15) 100%);
+}
+
+/* ==========================================================================
+   9. ADMONITIONS & TABELAS MKDOCS REFINADAS
+   ========================================================================== */
+
+.md-typeset .admonition {
+  border-radius: 14px !important;
+  border: 1px solid rgba(75, 155, 245, 0.22) !important;
+  border-left: 4px solid var(--kepler-cyan) !important;
+  background: rgba(9, 17, 32, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-md-color-scheme="default"] .md-typeset .admonition {
+  border-color: rgba(185, 145, 95, 0.28) !important;
+  border-left: 4px solid #ba4f11 !important;
+  background: rgba(253, 249, 242, 0.9) !important;
+  box-shadow: 0 8px 20px rgba(60, 42, 20, 0.06) !important;
 }
 
 .md-typeset table:not([class]) {
-  font-size: 0.76rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(75, 155, 245, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  background: rgba(8, 14, 28, 0.65);
+}
+
+[data-md-color-scheme="default"] .md-typeset table:not([class]) {
+  border-color: rgba(175, 140, 95, 0.25);
+  background: rgba(254, 251, 245, 0.8);
 }
 
 .md-typeset table:not([class]) th {
-  background: color-mix(in srgb, var(--kepler-cyan) 10%, transparent);
+  background: rgba(56, 214, 252, 0.12) !important;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.76rem;
 }
 
-@keyframes kepler-open-left {
-  from { opacity: 0.35; transform: rotateY(70deg); }
-  to { opacity: 1; transform: rotateY(7deg); }
+[data-md-color-scheme="default"] .md-typeset table:not([class]) th {
+  background: rgba(186, 79, 17, 0.1) !important;
+  color: #1a1612;
 }
 
-@keyframes kepler-open-right {
-  from { opacity: 0.35; transform: rotateY(-70deg); }
-  to { opacity: 1; transform: rotateY(-7deg); }
+/* ==========================================================================
+   10. RESPONSIVIDADE & AJUSTES MÓVEIS
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .kepler-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .kepler-rail {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 1.5rem;
+  }
 }
 
-@media (max-width: 720px) {
-  body {
-    background-position: 50% top;
-    background-attachment: scroll;
-  }
-
-  .md-sidebar--primary {
-    background: var(--kepler-blue-deep);
-  }
-
-  .md-content__inner {
-    margin-right: 0.2rem;
-    margin-left: 0.2rem;
-    padding: 1rem;
-    background: rgba(246, 242, 232, 0.94);
-  }
-
-  [data-md-color-scheme="slate"] .md-content__inner {
-    background: rgba(31, 37, 63, 0.94);
+@media (max-width: 600px) {
+  body,
+  [data-md-color-scheme="slate"] body,
+  [data-md-color-scheme="default"] body {
+    background-attachment: scroll !important;
   }
 
   .kepler-hero {
-    gap: 1.75rem;
-    padding: 2rem 1.15rem 2.4rem;
+    padding: 1.6rem 1.2rem;
   }
 
-  .kepler-journal-controls {
-    margin-top: 0.85rem;
+  .kepler-hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .kepler-metrics-grid {
+    grid-template-columns: 1fr;
   }
 
   .kepler-rail {
     grid-template-columns: 1fr;
-    gap: 0.6rem;
+    gap: 1rem;
   }
 
   .kepler-rail li {
-    padding: 0.35rem 0 0.35rem 3rem;
+    padding: 0.5rem 0 0.5rem 3.4rem;
     text-align: left;
   }
 
   .kepler-rail li::before {
     top: 0;
     left: 0;
+    width: 2.4rem;
+    height: 2.4rem;
   }
 
   .kepler-rail li:not(:last-child)::after {
-    top: 2rem;
-    left: 0.95rem;
-    width: 0;
-    height: 1rem;
-    border-top: 0;
-    border-left: 2px solid rgba(65, 217, 255, 0.38);
-  }
-}
-
-@media (max-width: 480px) {
-  .kepler-hero h1 {
-    font-size: clamp(2rem, 12vw, 3.1rem);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .kepler-journal-page-left {
-    animation: none;
-    transform: rotateY(7deg);
-  }
-
-  .kepler-journal-page-right {
-    animation: none;
-    transform: rotateY(-7deg);
+    top: 2.4rem;
+    left: 1.2rem;
+    width: 2px;
+    height: 1.2rem;
   }
 }
