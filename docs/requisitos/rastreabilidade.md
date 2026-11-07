@@ -45,10 +45,22 @@ A matriz conecta necessidade, épico, requisito, história e evidência planejad
 | RNF-008, RNF-012 | HT-05 | Banco e catálogo | Migração vazia e metadados da fonte |
 | RNF-004, RNF-005, RNF-006, RNF-007 | HT-06 | Todas as interfaces | Auditoria em 360 px, teclado, contraste e erros |
 
+## Rastreabilidade arquitetural
+
+| Decisão ou risco | Requisitos relacionados | Artefato | Evidência de conclusão |
+|---|---|---|---|
+| Isolamento por usuário | RF-006, RNF-002 | Modelagem de dados e arquitetura | teste com duas identidades |
+| Explicação de elegibilidade | RF-015, RNF-007, RNF-011 | Modelagem dinâmica e NFR Framework | testes de domínio e contrato da API |
+| Conflito de horários | RF-025, RNF-011 | Modelagem dinâmica e padrões | unidade de intervalo e jornada E2E |
+| Persistência reproduzível | RF-027, RNF-008 | Modelagem de dados e CI/CD | banco vazio criado pela pipeline |
+| Fonte e vigência do catálogo | RF-030 a RF-033, RNF-012 | Modelagem de dados | relatório idempotente de importação |
+| Interface responsiva e acessível | RNF-004 a RNF-006 | Especificação Suplementar | auditoria automatizada e manual |
+| Entrega protegida | RNF-003, RNF-009, RNF-010 | CI/CD | execução ligada ao commit da release |
+
 ## Cobertura
 
 - **30 de 30 requisitos funcionais** possuem história e evidência planejada;
-- **12 de 12 requisitos não funcionais** estão ligados a histórias técnicas;
+- **12 de 12 requisitos não funcionais** estão ligados a histórias técnicas e artefatos de verificação;
 - **7 épicos** cobrem identidade, currículo, progresso, ofertas, grade, dados e qualidade.
 
 ## Política de atualização

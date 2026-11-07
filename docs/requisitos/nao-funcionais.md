@@ -1,5 +1,7 @@
 # Requisitos não funcionais
 
+Os requisitos abaixo são verificáveis e formam a linha de base de qualidade. A [Especificação Suplementar](especificacao-suplementar.md) organiza os cenários em FURPS+, e o [NFR Framework](nfr-framework.md) registra dependências, contribuições e conflitos entre metas de qualidade.
+
 | ID | Qualidade | Requisito | Evidência esperada |
 |---|---|---|---|
 | RNF-001 | Manutenibilidade | TypeScript estrito, sem `any` injustificado. | Typecheck na CI |
@@ -21,3 +23,21 @@
 2. **Segurança e privacidade:** progresso e planos pertencem ao estudante.
 3. **Usabilidade e acessibilidade:** o valor depende de tornar regras complexas compreensíveis.
 4. **Manutenibilidade:** currículos e ofertas mudam e precisam ser versionados.
+
+## Situação e aceite
+
+| Situação | Significado |
+|---|---|
+| Proposto | requisito registrado, sem evidência executável |
+| Em validação | implementação parcial ou evidência em preparação |
+| Atendido | evidência ligada a uma versão e aprovada |
+| Não atendido | verificação falhou ou a implementação ainda viola o requisito |
+
+Um RNF só recebe a situação **Atendido** quando a evidência esperada estiver disponível para a mesma versão avaliada. A existência de tecnologia ou configuração não comprova, sozinha, o atributo de qualidade.
+
+## Artefatos de apoio
+
+- [Especificação Suplementar](especificacao-suplementar.md): cenários mensuráveis e restrições;
+- [NFR Framework](nfr-framework.md): softgoals, impactos e concessões;
+- [Modelagem de dados](../arquitetura/modelagem-dados.md): integridade, vigência e isolamento;
+- [CI/CD](../arquitetura/ci-cd.md): portões e evidências automatizadas.

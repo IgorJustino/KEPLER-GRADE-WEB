@@ -39,17 +39,26 @@ nav:
       - Visão do produto: produto/visao.md
       - Cenário e stakeholders: produto/cenario.md
       - Escopo e personas: produto/escopo.md
+      - Base e descoberta: produto/base-descoberta.md
   - Engenharia de Requisitos:
       - Processo de requisitos: requisitos/processo.md
       - Requisitos funcionais: requisitos/funcionais.md
       - Requisitos não funcionais: requisitos/nao-funcionais.md
+      - Especificação suplementar: requisitos/especificacao-suplementar.md
+      - NFR Framework: requisitos/nfr-framework.md
       - Épicos: requisitos/epicos.md
       - Histórias de usuário: requisitos/historias-usuario.md
       - Backlog do produto: requisitos/backlog.md
       - Rastreabilidade: requisitos/rastreabilidade.md
+  - Arquitetura e Modelagem:
+      - Visão arquitetural: desenvolvimento/arquitetura.md
+      - Modelagem estática: arquitetura/modelagem-estatica.md
+      - Modelagem dinâmica: arquitetura/modelagem-dinamica.md
+      - Modelagem de dados: arquitetura/modelagem-dados.md
+      - Padrões e reutilização: arquitetura/padroes-reutilizacao.md
+      - CI/CD e operação: arquitetura/ci-cd.md
   - Desenvolvimento:
       - Metodologia: desenvolvimento/metodologia.md
-      - Arquitetura: desenvolvimento/arquitetura.md
       - Qualidade e testes: desenvolvimento/qualidade.md
       - Roadmap: desenvolvimento/roadmap.md
   - Projeto:

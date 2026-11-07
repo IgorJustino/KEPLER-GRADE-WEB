@@ -10,12 +10,13 @@
 
 ## Uma documentação viva
 
-Esta página reúne os artefatos de **Métodos de Desenvolvimento de Software** e **Engenharia de Requisitos** do KEPLER. A organização foi inspirada no projeto acadêmico [Café do Sítio](https://github.com/mdsreq-fga-unb/2024.2-T03-CafeDoSitio), com conteúdo próprio derivado do blueprint e do protótipo deste repositório.
+Esta página reúne os artefatos de **Métodos de Desenvolvimento de Software**, **Engenharia de Requisitos** e **Arquitetura e Desenho de Software** do KEPLER. A organização combina as práticas do [AQUI TEM FCTE](https://github.com/UnBArqDsw2025-2-Turma02) com a modelagem de dados e os requisitos não funcionais do [CHEF Indica](https://github.com/UnBArqDsw2024-2), sempre com conteúdo próprio derivado do blueprint e do protótipo deste repositório.
 
 <div class="kepler-grid">
   <div class="kepler-card"><strong>Produto</strong><p>Problema, proposta de valor, stakeholders, personas e recorte do MVP.</p></div>
   <div class="kepler-card"><strong>Requisitos</strong><p>Processo de elicitação, RFs, RNFs, backlog, critérios e rastreabilidade.</p></div>
-  <div class="kepler-card"><strong>Desenvolvimento</strong><p>Metodologia, arquitetura, qualidade, testes e evolução incremental.</p></div>
+  <div class="kepler-card"><strong>Arquitetura</strong><p>Modelos estáticos, dinâmicos e de dados, padrões, reutilização e decisões.</p></div>
+  <div class="kepler-card"><strong>Desenvolvimento</strong><p>Metodologia, qualidade, testes, CI/CD e evolução incremental.</p></div>
 </div>
 
 ## Jornada do projeto
@@ -37,4 +38,6 @@ Esta página reúne os artefatos de **Métodos de Desenvolvimento de Software** 
 - [Processo de requisitos](requisitos/processo.md): como as necessidades são descobertas e validadas.
 - [Backlog e critérios](requisitos/backlog.md): como valor é convertido em incrementos verificáveis.
 - [Arquitetura](desenvolvimento/arquitetura.md): estado atual e direção técnica.
+- [Modelagem de dados](arquitetura/modelagem-dados.md): modelo conceitual, lógico e físico.
+- [NFR Framework](requisitos/nfr-framework.md): metas de qualidade, impactos e concessões.
 - [Roadmap](desenvolvimento/roadmap.md): sequência de evolução do MVP.
