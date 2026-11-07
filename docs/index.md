@@ -30,25 +30,25 @@
     <div class="kepler-metrics-grid">
       <div class="kepler-metric-card">
         <div class="kepler-metric-label">Cursos Mapeados</div>
-        <div class="kepler-metric-value">5 <span style="font-size: 0.75rem; color: #38d6fc; font-weight: 600;">Engenharias</span></div>
+        <div class="kepler-metric-value">5 <span class="kepler-metric-accent kepler-metric-accent--cyan">Engenharias</span></div>
         <div class="kepler-eng-tags">
-          <span class="kepler-eng-tag" style="background: rgba(33, 150, 243, 0.2); color: #64b5f6;">SW</span>
-          <span class="kepler-eng-tag" style="background: rgba(0, 188, 212, 0.2); color: #4dd0e1;">AERO</span>
-          <span class="kepler-eng-tag" style="background: rgba(255, 152, 0, 0.2); color: #ffb74d;">AUTO</span>
-          <span class="kepler-eng-tag" style="background: rgba(156, 39, 176, 0.2); color: #ba68c8;">ELET</span>
-          <span class="kepler-eng-tag" style="background: rgba(76, 175, 80, 0.2); color: #81c784;">ENERG</span>
+          <span class="kepler-eng-tag kepler-eng-tag--software">SW</span>
+          <span class="kepler-eng-tag kepler-eng-tag--aero">AERO</span>
+          <span class="kepler-eng-tag kepler-eng-tag--auto">AUTO</span>
+          <span class="kepler-eng-tag kepler-eng-tag--electronics">ELET</span>
+          <span class="kepler-eng-tag kepler-eng-tag--energy">ENERG</span>
         </div>
       </div>
 
       <div class="kepler-metric-card">
         <div class="kepler-metric-label">Motor de Conflito</div>
-        <div class="kepler-metric-value">Zero <span style="font-size: 0.75rem; color: #2ed573; font-weight: 600;">Colisões</span></div>
+        <div class="kepler-metric-value">Zero <span class="kepler-metric-accent kepler-metric-accent--green">Colisões</span></div>
         <div class="kepler-metric-desc">Validação matemática cruzada entre códigos de horário do SIGAA.</div>
       </div>
 
       <div class="kepler-metric-card">
         <div class="kepler-metric-label">Matriz Curricular</div>
-        <div class="kepler-metric-value">100% <span style="font-size: 0.75rem; color: #ffb443; font-weight: 600;">Interativa</span></div>
+        <div class="kepler-metric-value">100% <span class="kepler-metric-accent kepler-metric-accent--amber">Interativa</span></div>
         <div class="kepler-metric-desc">Fluxogramas com cargas horárias oficiais (90h, 60h, 30h) e pré-requisitos.</div>
       </div>
 
