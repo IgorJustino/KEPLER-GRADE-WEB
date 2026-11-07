@@ -90,7 +90,7 @@ plugins:
       lang: pt
 
 extra_css:
-  - stylesheets/kepler.css
+  - stylesheets/kepler-victoria.css
 
 extra:
   social:
