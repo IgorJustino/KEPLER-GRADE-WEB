@@ -1,10 +1,21 @@
 <section class="kepler-hero">
-  <span class="kepler-kicker">Planejamento acadêmico · FGA/UnB</span>
-  <h1>Planeje sua órbita acadêmica.</h1>
-  <p>O KEPLER organiza currículo, progresso, ofertas e conflitos para transformar a montagem da grade em uma decisão clara e explicável.</p>
-  <div class="kepler-actions">
-    <a class="kepler-button" href="produto/visao/">Conhecer o produto</a>
-    <a class="kepler-button secondary" href="requisitos/funcionais/">Explorar requisitos</a>
+  <div class="kepler-hero-copy">
+    <span class="kepler-kicker">Planejamento acadêmico · FGA/UnB</span>
+    <h1>Planeje sua órbita acadêmica.</h1>
+    <p>O KEPLER organiza currículo, progresso, ofertas e conflitos para transformar a montagem da grade em uma decisão clara e explicável.</p>
+    <div class="kepler-actions">
+      <a class="kepler-button" href="produto/visao/">Conhecer o produto</a>
+      <a class="kepler-button secondary" href="requisitos/funcionais/">Explorar requisitos</a>
+    </div>
+  </div>
+  <div class="kepler-journal-stage" aria-hidden="true">
+    <div class="kepler-journal-book">
+      <span class="kepler-journal-page kepler-journal-page-left"></span>
+      <span class="kepler-journal-page kepler-journal-page-right"></span>
+    </div>
+    <div class="kepler-journal-controls">
+      <span></span><span></span><span></span><span></span>
+    </div>
   </div>
 </section>
 
