@@ -43,7 +43,9 @@ nav:
       - Processo de requisitos: requisitos/processo.md
       - Requisitos funcionais: requisitos/funcionais.md
       - Requisitos não funcionais: requisitos/nao-funcionais.md
-      - Backlog e critérios: requisitos/backlog.md
+      - Épicos: requisitos/epicos.md
+      - Histórias de usuário: requisitos/historias-usuario.md
+      - Backlog do produto: requisitos/backlog.md
       - Rastreabilidade: requisitos/rastreabilidade.md
   - Desenvolvimento:
       - Metodologia: desenvolvimento/metodologia.md
