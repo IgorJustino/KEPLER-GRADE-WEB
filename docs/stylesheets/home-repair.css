@@ -1,0 +1,55 @@
+/* Correção do hero: composição central estável dentro da coluna do MkDocs. */
+.kepler-hero {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  min-height: auto;
+  padding: clamp(2.5rem, 6vw, 4.6rem) clamp(1.15rem, 5vw, 3.6rem);
+  text-align: center;
+}
+
+.kepler-hero-copy {
+  width: min(100%, 46rem);
+}
+
+.kepler-hero h1,
+.kepler-hero p {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.kepler-actions {
+  justify-content: center;
+}
+
+.kepler-journal-stage {
+  width: min(100%, 36rem);
+  min-width: 0;
+}
+
+.kepler-journal-book {
+  width: 100%;
+  max-width: 36rem;
+}
+
+.kepler-journal-page {
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .kepler-hero {
+    gap: 1.75rem;
+  }
+
+  .kepler-hero h1 {
+    font-size: clamp(2rem, 12vw, 3.1rem);
+  }
+
+  .kepler-journal-stage {
+    width: 100%;
+  }
+
+  .kepler-journal-controls {
+    margin-top: 0.85rem;
+  }
+}

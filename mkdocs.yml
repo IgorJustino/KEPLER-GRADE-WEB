@@ -93,6 +93,7 @@ extra_css:
   - stylesheets/extra.css
   - stylesheets/atlas-background.css
   - stylesheets/journal.css
+  - stylesheets/home-repair.css
 
 extra:
   social:
