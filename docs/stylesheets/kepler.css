@@ -521,6 +521,15 @@ body {
   gap: 4px;
 }
 
+.kepler-metric-accent {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.kepler-metric-accent--cyan { color: var(--kepler-cyan); }
+.kepler-metric-accent--green { color: #2ed573; }
+.kepler-metric-accent--amber { color: var(--kepler-amber); }
+
 [data-md-color-scheme="default"] .kepler-metric-value {
   color: #1a1612;
 }
@@ -550,6 +559,12 @@ body {
   border-radius: 4px;
   letter-spacing: 0.02em;
 }
+
+.kepler-eng-tag--software { color: #64b5f6; background: rgba(33, 150, 243, 0.2); }
+.kepler-eng-tag--aero { color: #4dd0e1; background: rgba(0, 188, 212, 0.2); }
+.kepler-eng-tag--auto { color: #ffb74d; background: rgba(255, 152, 0, 0.2); }
+.kepler-eng-tag--electronics { color: #ba68c8; background: rgba(156, 39, 176, 0.2); }
+.kepler-eng-tag--energy { color: #81c784; background: rgba(76, 175, 80, 0.2); }
 
 /* ==========================================================================
    7. CARDS EM GLASSMORPHISM (PRODUTO, REQUISITOS, ARQUITETURA, DEV)
