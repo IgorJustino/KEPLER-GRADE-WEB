@@ -1,0 +1,67 @@
+/* Camada separada para destacar o atlas e renovar o cache do Pages. */
+:root {
+  --kepler-atlas-bg: url("../assets/kepler-atlas-newspaper.webp");
+}
+
+html {
+  background: #6f5435;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #8f7047 !important;
+  background-image:
+    linear-gradient(rgba(30, 20, 12, 0.12), rgba(30, 20, 12, 0.3)),
+    var(--kepler-atlas-bg) !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+.md-container,
+.md-main {
+  background: transparent !important;
+}
+
+.md-content__inner {
+  background: rgba(249, 246, 236, 0.88);
+  backdrop-filter: blur(9px) saturate(0.78);
+}
+
+.md-content__inner:has(.kepler-hero) {
+  background: rgba(249, 246, 236, 0.76);
+}
+
+[data-md-color-scheme="slate"] body {
+  background-color: #07111f !important;
+  background-image:
+    linear-gradient(rgba(3, 9, 16, 0.3), rgba(3, 9, 16, 0.58)),
+    var(--kepler-atlas-bg) !important;
+}
+
+[data-md-color-scheme="slate"] .md-content__inner {
+  background: rgba(7, 17, 31, 0.86);
+}
+
+[data-md-color-scheme="slate"] .md-content__inner:has(.kepler-hero) {
+  background: rgba(7, 17, 31, 0.74);
+}
+
+@media (max-width: 720px) {
+  body,
+  [data-md-color-scheme="slate"] body {
+    background-position: 50% top !important;
+    background-attachment: scroll !important;
+  }
+
+  .md-content__inner,
+  .md-content__inner:has(.kepler-hero) {
+    background: rgba(249, 246, 236, 0.9);
+  }
+
+  [data-md-color-scheme="slate"] .md-content__inner,
+  [data-md-color-scheme="slate"] .md-content__inner:has(.kepler-hero) {
+    background: rgba(7, 17, 31, 0.9);
+  }
+}
