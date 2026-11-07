@@ -1,5 +1,13 @@
 # Como contribuir
 
+## Guias oficiais
+
+- [Regras completas de contribuição](https://github.com/IgorJustino/KEPLER-GRADE-WEB/blob/main/CONTRIBUTING.md)
+- [Código de Conduta](https://github.com/IgorJustino/KEPLER-GRADE-WEB/blob/main/CODE_OF_CONDUCT.md)
+- [Template de Pull Request](https://github.com/IgorJustino/KEPLER-GRADE-WEB/blob/main/.github/pull_request_template.md)
+
+Toda mudança deve partir de uma branch própria, estar ligada a uma issue e passar por revisão antes de chegar à `main`.
+
 ## Preparação
 
 1. abra uma issue ou associe a mudança a um item do backlog;
