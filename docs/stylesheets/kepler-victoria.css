@@ -234,6 +234,17 @@ body,
   transition: color 150ms ease, background 150ms ease;
 }
 
+/* Dá contraste ao índice principal sem alterar os links do conteúdo ou o
+   índice secundário à direita. */
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link:not(.md-nav__link--active) {
+  color: rgba(239, 232, 211, 0.84) !important;
+  opacity: 1;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__title {
+  color: #f1e7cc !important;
+}
+
 .md-nav__link:hover {
   color: #704a1e !important;
   background: rgba(170, 121, 53, 0.1);
