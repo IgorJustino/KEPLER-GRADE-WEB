@@ -270,6 +270,29 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
 
       <section className="bureau-hero">
         <AstrolabeCanvas />
+        <div className="bureau-wind" aria-hidden="true">
+          <img
+            className="bureau-wind__paper bureau-wind__paper--euclid"
+            src="/bg/bureau-paper-euclid.webp"
+            alt=""
+            draggable={false}
+            decoding="async"
+          />
+          <img
+            className="bureau-wind__paper bureau-wind__paper--orbit"
+            src="/bg/bureau-paper-orbit.webp"
+            alt=""
+            draggable={false}
+            decoding="async"
+          />
+          <img
+            className="bureau-wind__paper bureau-wind__paper--fragment"
+            src="/bg/bureau-paper-orbit.webp"
+            alt=""
+            draggable={false}
+            decoding="async"
+          />
+        </div>
         <div className="bureau-hero__shade" aria-hidden="true" />
         <span className="bureau-protocol">Protocolo SIGAA: 2026/2 · Lavrado</span>
 
