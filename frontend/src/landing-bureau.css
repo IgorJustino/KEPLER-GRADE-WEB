@@ -292,18 +292,19 @@
 }
 
 .bureau-wind__paper--center-top {
-  top: 22%;
-  left: 45%;
-  width: clamp(9rem, 13vw, 12.5rem);
+  top: 34%;
+  left: 30%;
+  width: clamp(8rem, 11vw, 10.5rem);
   opacity: 0.52;
   animation: bureau-paper-center-top 9.5s cubic-bezier(0.42, 0, 0.22, 1) -2s infinite;
   filter: brightness(0.88) saturate(0.68) sepia(0.1) drop-shadow(0 15px 18px rgba(0, 0, 0, 0.58));
 }
 
 .bureau-wind__paper--center-bottom {
-  bottom: 9%;
-  left: 43%;
-  width: clamp(12rem, 17vw, 16rem);
+  right: 28%;
+  bottom: 14%;
+  left: auto;
+  width: clamp(10rem, 14vw, 13.5rem);
   opacity: 0.54;
   animation: bureau-paper-center-bottom 11.5s cubic-bezier(0.42, 0, 0.2, 1) -5s infinite;
   filter: brightness(0.92) saturate(0.66) sepia(0.1) drop-shadow(0 16px 20px rgba(0, 0, 0, 0.6));
@@ -1161,14 +1162,16 @@
   }
 
   .bureau-wind__paper--center-top {
-    top: 18%;
-    left: 56%;
+    top: 28%;
+    left: 7%;
     width: 7rem;
     opacity: 0.18;
   }
 
   .bureau-wind__paper--center-bottom {
-    left: 42%;
+    right: -4%;
+    bottom: 16%;
+    left: auto;
     width: 9rem;
     opacity: 0.16;
   }
