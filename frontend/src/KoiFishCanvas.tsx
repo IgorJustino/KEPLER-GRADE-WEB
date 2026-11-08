@@ -42,16 +42,30 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
     // Mouse tracker
     const mouse = { x: width / 2, y: height / 2, active: false, rippleTimer: 0 };
     const handleMouseMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      const rect = canvas.getBoundingClientRect();
+      const insideCanvas =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      mouse.active = insideCanvas;
+      if (!insideCanvas) return;
+
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
       mouse.active = true;
       mouse.rippleTimer++;
       if (mouse.rippleTimer % 12 === 0) {
-        addRipple(e.clientX, e.clientY, 0.42, 1.2, 'rgba(184, 50, 24,'); // Vermelho carimbo de jornal
+        addRipple(mouse.x, mouse.y, 0.42, 1.2, 'rgba(184, 50, 24,'); // Vermelho carimbo de jornal
       }
+    };
+    const handleMouseOut = (e: MouseEvent) => {
+      if (!e.relatedTarget) mouse.active = false;
     };
     if (interactive) {
       window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseout', handleMouseOut);
     }
 
     // Ondulações na água estilo gravura de jornal (nanquim suave e carimbo vermelho)
@@ -114,6 +128,7 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
       swimSpeed = 0.036;
       swimTime = 0;
       finCycle = 0;
+      behavior: 'orbit' | 'pointer';
       type: 'ink-woodcut' | 'carmine-stamp'; // ink-woodcut = nanquim puro de jornal; carmine-stamp = carimbo vermelho de imprensa
 
       constructor(
@@ -122,7 +137,8 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
         orbitRadiusY: number,
         type: 'ink-woodcut' | 'carmine-stamp',
         centerOffsetX = 0,
-        centerOffsetY = 0
+        centerOffsetY = 0,
+        behavior: 'orbit' | 'pointer' = 'orbit'
       ) {
         this.orbitAngle = initialOrbitAngle;
         this.orbitSpeed = 0.0065 + (type === 'ink-woodcut' ? 0.0003 : -0.0003);
@@ -131,6 +147,7 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
         this.centerOffsetX = centerOffsetX;
         this.centerOffsetY = centerOffsetY;
         this.type = type;
+        this.behavior = behavior;
 
         const startX = width / 2 + Math.cos(this.orbitAngle) * this.orbitRadiusX;
         const startY = height / 2 + Math.sin(this.orbitAngle) * this.orbitRadiusY;
@@ -155,7 +172,10 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
         let targetX = centerX + Math.cos(this.orbitAngle) * this.orbitRadiusX;
         let targetY = centerY + Math.sin(this.orbitAngle) * this.orbitRadiusY;
 
-        if (mouse.active) {
+        if (this.behavior === 'pointer' && mouse.active) {
+          targetX = mouse.x;
+          targetY = mouse.y;
+        } else if (mouse.active) {
           const dxM = targetX - mouse.x;
           const dyM = targetY - mouse.y;
           const distM = Math.sqrt(dxM * dxM + dyM * dyM);
@@ -169,9 +189,13 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
         const head = this.segments[0];
         const dx = targetX - head.x;
         const dy = targetY - head.y;
+        const distanceToTarget = Math.sqrt(dx * dx + dy * dy);
+        const followStrength = this.behavior === 'pointer' ? 0.048 : 0.075;
         head.angle = Math.atan2(dy, dx);
-        head.x += dx * 0.075;
-        head.y += dy * 0.075;
+        if (this.behavior !== 'pointer' || !mouse.active || distanceToTarget > 42) {
+          head.x += dx * followStrength;
+          head.y += dy * followStrength;
+        }
 
         for (let i = 1; i < this.segmentsCount; i++) {
           const prev = this.segments[i - 1];
@@ -454,10 +478,19 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
       }
     }
 
-    // Instancia as duas carpas em arte jornal
+    // Duas carpas percorrem o Atlântico e uma terceira acompanha o cursor.
     const oceanCenterOffset = width * 0.16;
     const fish1 = new NewspaperKoiFish(0, Math.min(width, height) * 0.28, Math.min(width, height) * 0.27, 'carmine-stamp', oceanCenterOffset);
     const fish2 = new NewspaperKoiFish(Math.PI, Math.min(width, height) * 0.28, Math.min(width, height) * 0.27, 'ink-woodcut', oceanCenterOffset);
+    const pointerFish = new NewspaperKoiFish(
+      Math.PI / 2,
+      Math.min(width, height) * 0.22,
+      Math.min(width, height) * 0.2,
+      'carmine-stamp',
+      oceanCenterOffset,
+      0,
+      'pointer'
+    );
 
     // =========================================================================
     // LOOP PRINCIPAL (ESTILO ARTE JORNAL HISTÓRICA & MAPA)
@@ -594,9 +627,11 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
       // 4. Renderiza as carpas em arte jornal
       fish1.update(time);
       fish2.update(time);
+      pointerFish.update(time);
 
       fish1.draw(ctx);
       fish2.draw(ctx);
+      pointerFish.draw(ctx);
 
       animId = requestAnimationFrame(render);
     };
@@ -632,6 +667,7 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
       window.removeEventListener('resize', handleResize);
       if (interactive) {
         window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseout', handleMouseOut);
       }
     };
   }, [interactive]);
