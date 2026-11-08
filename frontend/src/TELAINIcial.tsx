@@ -77,7 +77,7 @@ const GazetteLanding: React.FC<GazetteLandingProps> = ({
                   color: '#FFF9F0',
                 }}
               >
-                KEPLER GAZETTE
+                KEPLER BUREAU
               </span>
               <div
                 style={{
@@ -144,11 +144,11 @@ const GazetteLanding: React.FC<GazetteLandingProps> = ({
               type="button"
               className="landing-theme-toggle"
               onClick={onToggleDesign}
-              aria-label="Ativar design Bureau Vitoriano"
-              title="Trocar para o design Bureau Vitoriano"
+              aria-label="Ativar design Gazeta"
+              title="Trocar para o design Gazeta"
             >
               <span className="landing-theme-toggle__icon" aria-hidden="true">◐</span>
-              <span className="landing-theme-toggle__label">Modo Bureau</span>
+              <span className="landing-theme-toggle__label">Modo Gazeta</span>
             </button>
             <button
               onClick={() => onEnterSimulator(0)}
@@ -897,7 +897,7 @@ const GazetteLanding: React.FC<GazetteLandingProps> = ({
             color: '#A89680',
           }}
         >
-          <span>KEPLER GAZETTE · PLANEJAMENTO ACADÊMICO FGA / UNB</span>
+          <span>KEPLER BUREAU · PLANEJAMENTO ACADÊMICO FGA / UNB</span>
           <span>BRASÍLIA · EDIÇÃO 2026</span>
         </div>
       </footer>
@@ -937,8 +937,8 @@ export const TELAINIcial: React.FC<TELAINIcialProps> = (props) => {
   };
 
   if (design === 'bureau') {
-    return <TELAINIcialBureau {...props} onToggleDesign={toggleDesign} />;
+    return <GazetteLanding {...props} onToggleDesign={toggleDesign} />;
   }
 
-  return <GazetteLanding {...props} onToggleDesign={toggleDesign} />;
+  return <TELAINIcialBureau {...props} onToggleDesign={toggleDesign} />;
 };

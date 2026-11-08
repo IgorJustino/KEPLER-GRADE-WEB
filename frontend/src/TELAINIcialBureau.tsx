@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { KoiFishCanvas } from './KoiFishCanvas';
+import { DynamicChessHeroCanvas } from './DynamicChessHeroCanvas';
 import './landing-bureau.css';
 
 interface TELAINIcialBureauProps {
@@ -239,7 +239,7 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
           >
             <span className="bureau-brand__seal">K</span>
             <span>
-              <strong>KEPLER · BUREAU</strong>
+              <strong>KEPLER · GAZETA</strong>
               <small>Arquivo Cartográfico · FGA / Universidade de Brasília</small>
             </span>
           </button>
@@ -256,11 +256,11 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
               type="button"
               className="bureau-theme-toggle"
               onClick={onToggleDesign}
-              aria-label="Ativar design Gazeta"
-              title="Trocar para o design Gazeta"
+              aria-label="Ativar design Bureau"
+              title="Trocar para o design Bureau"
             >
               <span aria-hidden="true">☼</span>
-              <span className="bureau-theme-toggle__label">Modo Gazeta</span>
+              <span className="bureau-theme-toggle__label">Modo Bureau</span>
             </button>
             <button type="button" className="bureau-button bureau-button--gold" onClick={() => onEnterSimulator(0)}>
               Acessar grade <span aria-hidden="true">➔</span>
@@ -270,7 +270,7 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
       </header>
 
       <section className="bureau-hero">
-        <KoiFishCanvas interactive={true} />
+        <DynamicChessHeroCanvas opacity={0.92} interactive={true} />
         <AstrolabeCanvas />
         <div className="bureau-wind" aria-hidden="true">
           <img
@@ -391,7 +391,7 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
         <div className="bureau-section__inner">
           <header className="bureau-section__head">
             <div>
-              <p>Caderno 02 · Metodologia do Bureau</p>
+              <p>Caderno 02 · Metodologia da Gazeta</p>
               <h2>Da matrícula inicial à outorga de grau, sem extraviar a verdade.</h2>
             </div>
             <span>
