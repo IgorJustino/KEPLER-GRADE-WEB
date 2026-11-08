@@ -128,6 +128,8 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
       swimSpeed = 0.036;
       swimTime = 0;
       finCycle = 0;
+      velocityX = 0;
+      velocityY = 0;
       behavior: 'orbit' | 'pointer';
       type: 'ink-woodcut' | 'carmine-stamp'; // ink-woodcut = nanquim puro de jornal; carmine-stamp = carimbo vermelho de imprensa
 
@@ -190,11 +192,24 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
         const dx = targetX - head.x;
         const dy = targetY - head.y;
         const distanceToTarget = Math.sqrt(dx * dx + dy * dy);
-        const followStrength = this.behavior === 'pointer' ? 0.048 : 0.075;
         head.angle = Math.atan2(dy, dx);
-        if (this.behavior !== 'pointer' || !mouse.active || distanceToTarget > 42) {
-          head.x += dx * followStrength;
-          head.y += dy * followStrength;
+
+        if (this.behavior === 'pointer') {
+          const stopDistance = mouse.active ? 54 : 0;
+          const remainingDistance = Math.max(0, distanceToTarget - stopDistance);
+          const desiredSpeed = Math.min(1.55, remainingDistance * 0.007);
+          const desiredVelocityX = distanceToTarget > 0 ? (dx / distanceToTarget) * desiredSpeed : 0;
+          const desiredVelocityY = distanceToTarget > 0 ? (dy / distanceToTarget) * desiredSpeed : 0;
+
+          // Aceleração baixa e velocidade máxima fixa evitam o salto quando o
+          // cursor é detectado longe da carpa.
+          this.velocityX += (desiredVelocityX - this.velocityX) * 0.028;
+          this.velocityY += (desiredVelocityY - this.velocityY) * 0.028;
+          head.x += this.velocityX;
+          head.y += this.velocityY;
+        } else {
+          head.x += dx * 0.075;
+          head.y += dy * 0.075;
         }
 
         for (let i = 1; i < this.segmentsCount; i++) {
