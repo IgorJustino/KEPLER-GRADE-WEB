@@ -187,6 +187,21 @@ body {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* O menu principal precisa de contraste próprio; os links do conteúdo e do
+   índice secundário continuam usando o azul definido pelo tema. */
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link:not(.md-nav__link--active) {
+  color: rgba(232, 238, 232, 0.86) !important;
+  opacity: 1;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__title {
+  color: #f1e9d7 !important;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link--active {
+  color: #f0c874 !important;
+}
+
 .md-nav__link:hover {
   color: var(--kepler-cyan) !important;
   background: rgba(56, 214, 252, 0.08);
