@@ -16,6 +16,8 @@
   --bureau-paper: #f5eedf;
   --bureau-paper-aged: #e7dcc7;
   --bureau-paper-muted: #c9b8a2;
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   overflow-x: clip;
   color: var(--bureau-paper);
@@ -23,10 +25,29 @@
     radial-gradient(ellipse at 50% 0%, rgba(35, 68, 61, 0.38), transparent 68%),
     linear-gradient(90deg, rgba(4, 13, 11, 0.84), rgba(9, 22, 19, 0.42) 54%, rgba(4, 13, 11, 0.78)),
     linear-gradient(180deg, rgba(4, 13, 11, 0.25), rgba(4, 13, 11, 0.82)),
-    url('/bg/bureau-chess-archive.jpeg') center 42% / cover fixed no-repeat,
     var(--bureau-950);
   font-family: 'Newsreader', Georgia, serif;
   scroll-behavior: smooth;
+}
+
+.bureau::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 4.6rem;
+  left: 0;
+  width: 100%;
+  height: calc(100svh - 4.6rem);
+  background: url('/bg/bureau-chess-archive.jpeg') center 42% / auto 128vh no-repeat;
+  opacity: 0.82;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 20%, #000 34%, #000 66%, transparent 80%);
+  mask-image: linear-gradient(90deg, transparent 20%, #000 34%, #000 66%, transparent 80%);
+}
+
+.bureau > * {
+  position: relative;
+  z-index: 1;
 }
 
 .bureau *,
@@ -961,9 +982,12 @@
 }
 
 @media (max-width: 620px) {
-  .bureau {
+  .bureau::before {
     background-position: center 24%;
-    background-attachment: scroll;
+    background-size: auto 118vh;
+    opacity: 0.72;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
 
   .bureau-header__inner {
