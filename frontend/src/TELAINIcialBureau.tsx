@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { DynamicChessHeroCanvas } from './DynamicChessHeroCanvas';
+import { KoiFishCanvas } from './KoiFishCanvas';
 import './landing-bureau.css';
 
 interface TELAINIcialBureauProps {
+  design: 'gazette' | 'bureau';
   onGoToBookStore: () => void;
   onEnterSimulator: (screenId?: number) => void;
   onOpenFlowchart?: () => void;
@@ -217,18 +219,22 @@ const AstrolabeCanvas: React.FC = () => {
 };
 
 export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
+  design,
   onGoToBookStore,
   onEnterSimulator,
   onOpenFlowchart,
   onToggleDesign,
 }) => {
+  const isBureau = design === 'bureau';
+  const nextDesignLabel = isBureau ? 'Gazeta' : 'Bureau';
+
   const openFlowchart = () => {
     if (onOpenFlowchart) onOpenFlowchart();
     else onEnterSimulator(1);
   };
 
   return (
-    <main className="bureau">
+    <main className={`bureau bureau--${design}`} data-design={design}>
       <header className="bureau-header">
         <div className="bureau-header__inner">
           <button
@@ -239,7 +245,7 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
           >
             <span className="bureau-brand__seal">K</span>
             <span>
-              <strong>KEPLER · GAZETA</strong>
+              <strong>KEPLER · GRADE WEB</strong>
               <small>Arquivo Cartográfico · FGA / Universidade de Brasília</small>
             </span>
           </button>
@@ -256,11 +262,11 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
               type="button"
               className="bureau-theme-toggle"
               onClick={onToggleDesign}
-              aria-label="Ativar design Bureau"
-              title="Trocar para o design Bureau"
+              aria-label={`Ativar tema ${nextDesignLabel}`}
+              title={`Trocar para o tema ${nextDesignLabel}`}
             >
-              <span aria-hidden="true">☼</span>
-              <span className="bureau-theme-toggle__label">Modo Bureau</span>
+              <span aria-hidden="true">{isBureau ? '☼' : '◐'}</span>
+              <span className="bureau-theme-toggle__label">Tema {nextDesignLabel}</span>
             </button>
             <button type="button" className="bureau-button bureau-button--gold" onClick={() => onEnterSimulator(0)}>
               Acessar grade <span aria-hidden="true">➔</span>
@@ -270,7 +276,11 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
       </header>
 
       <section className="bureau-hero">
-        <DynamicChessHeroCanvas opacity={0.92} interactive={true} />
+        {isBureau ? (
+          <KoiFishCanvas interactive={true} />
+        ) : (
+          <DynamicChessHeroCanvas opacity={0.92} interactive={true} />
+        )}
         <AstrolabeCanvas />
         <div className="bureau-wind" aria-hidden="true">
           <img
@@ -344,7 +354,7 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
 
         <div className="bureau-hero__grid">
           <div className="bureau-hero__copy">
-            <p className="bureau-kicker"><span /> Gazeta Cartográfica · Secretaria do Gama / UnB</p>
+            <p className="bureau-kicker"><span /> Cartografia Acadêmica · Secretaria do Gama / UnB</p>
             <h1>
               KEPLER
               <span>O Grande Compêndio Curricular</span>
@@ -391,7 +401,7 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
         <div className="bureau-section__inner">
           <header className="bureau-section__head">
             <div>
-              <p>Caderno 02 · Metodologia da Gazeta</p>
+              <p>Caderno 02 · Metodologia KEPLER</p>
               <h2>Da matrícula inicial à outorga de grau, sem extraviar a verdade.</h2>
             </div>
             <span>
@@ -498,7 +508,7 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
       <footer className="bureau-footer">
         <div>
           <span>❖</span>
-          <p>KEPLER Gazette & Archive · Planejamento Acadêmico FGA / UnB</p>
+          <p>KEPLER Grade Web & Archive · Planejamento Acadêmico FGA / UnB</p>
         </div>
         <div>
           <span>Brasília · Edição Cartográfica 2026</span>

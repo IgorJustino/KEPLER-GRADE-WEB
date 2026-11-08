@@ -1272,3 +1272,89 @@
     display: none;
   }
 }
+
+/* ==========================================================================
+   TEMA BUREAU — MESMA ESTRUTURA, PALETA CARTOGRÁFICA EM SÉPIA
+   ========================================================================== */
+
+.bureau--bureau {
+  --bureau-deep: #160c06;
+  --bureau-950: #21130b;
+  --bureau-900: #2d1c11;
+  --bureau-800: #442a18;
+  --bureau-700: #614126;
+  --bureau-brass: #cf8f45;
+  --bureau-brass-light: #efbd70;
+  --bureau-brass-dark: #8f5527;
+  --bureau-crimson: #bd351d;
+  --bureau-paper: #f5ead7;
+  --bureau-paper-aged: #e8d5ba;
+  --bureau-paper-muted: #c8aa87;
+  background:
+    radial-gradient(ellipse at 52% 0%, rgba(118, 72, 35, 0.3), transparent 68%),
+    linear-gradient(90deg, rgba(22, 12, 6, 0.58), rgba(45, 28, 17, 0.18) 54%, rgba(22, 12, 6, 0.52)),
+    linear-gradient(180deg, rgba(22, 12, 6, 0.1), rgba(22, 12, 6, 0.7)),
+    var(--bureau-950);
+}
+
+.bureau--bureau::before {
+  background-image: url('/bg/bureau-brasil-atlantico-fauna.webp');
+  background-position: left center;
+  opacity: 0.9;
+}
+
+.bureau--bureau .bureau-header {
+  background: rgba(22, 12, 6, 0.96);
+}
+
+.bureau--bureau .bureau-theme-toggle {
+  background: rgba(45, 28, 17, 0.86);
+}
+
+.bureau--bureau .bureau-button--outline {
+  background: rgba(33, 19, 11, 0.7);
+}
+
+.bureau--bureau .bureau-hero__shade {
+  background:
+    linear-gradient(90deg, rgba(22, 12, 6, 0.76), rgba(45, 28, 17, 0.08) 68%, rgba(22, 12, 6, 0.5)),
+    linear-gradient(180deg, rgba(45, 28, 17, 0.1), transparent 42%, rgba(22, 12, 6, 0.76));
+}
+
+.bureau--bureau .bureau-protocol,
+.bureau--bureau .bureau-library {
+  background: rgba(22, 12, 6, 0.94);
+}
+
+.bureau--bureau .bureau-quick-stats span,
+.bureau--bureau .bureau-record,
+.bureau--bureau .bureau-course {
+  background: rgba(45, 28, 17, 0.8);
+}
+
+.bureau--bureau .bureau-record:hover,
+.bureau--bureau .bureau-course:hover {
+  background: rgba(68, 42, 24, 0.94);
+}
+
+.bureau--bureau .bureau-dispatch {
+  background: rgba(33, 19, 11, 0.96);
+}
+
+.bureau--bureau .bureau-dispatch__metrics {
+  background: rgba(22, 12, 6, 0.76);
+}
+
+.bureau--bureau .bureau-section--raised {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(118, 72, 35, 0.38), transparent 55%),
+    var(--bureau-950);
+}
+
+.bureau--bureau .bureau-wind__paper {
+  filter: brightness(0.78) saturate(0.82) sepia(0.4) drop-shadow(0 12px 14px rgba(0, 0, 0, 0.5));
+}
+
+.bureau--bureau .bureau-astrolabe {
+  opacity: 0.62;
+}
