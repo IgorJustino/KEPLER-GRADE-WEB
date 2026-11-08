@@ -371,29 +371,6 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
             </div>
           </div>
 
-          <aside className="bureau-dispatch">
-            <div className="bureau-dispatch__head">
-              <span>Despacho do Diretório Acadêmico</span>
-              <strong>Termo n° 1889</strong>
-            </div>
-            <p>
-              O <strong>KEPLER</strong> unifica currículos oficiais, histórico discente e
-              ofertas do SIGAA em uma única matriz visual. Planeje suas matérias com
-              segurança matemática, decifrando códigos como <code>35T23</code> antes da matrícula.
-            </p>
-            <div className="bureau-dispatch__metrics">
-              <div><small>Índice médio acumulado</small><strong>IRA 4.28</strong></div>
-              <div><small>Integralização</small><strong>67,5%</strong></div>
-            </div>
-            <div className="bureau-dispatch__actions">
-              <button type="button" className="bureau-button bureau-button--gold" onClick={() => onEnterSimulator(0)}>
-                Abrir simulador
-              </button>
-              <button type="button" className="bureau-button bureau-button--outline" onClick={openFlowchart}>
-                Ver fluxograma
-              </button>
-            </div>
-          </aside>
         </div>
       </section>
 
