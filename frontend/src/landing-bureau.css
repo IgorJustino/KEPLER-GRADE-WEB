@@ -20,9 +20,10 @@
   overflow-x: clip;
   color: var(--bureau-paper);
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(35, 68, 61, 0.45), transparent 68%),
-    radial-gradient(circle at 80% 80%, rgba(200, 157, 82, 0.07), transparent 48%),
-    repeating-linear-gradient(45deg, rgba(200, 157, 82, 0.016) 0 1px, transparent 1px 20px),
+    radial-gradient(ellipse at 50% 0%, rgba(35, 68, 61, 0.38), transparent 68%),
+    linear-gradient(90deg, rgba(4, 13, 11, 0.84), rgba(9, 22, 19, 0.42) 54%, rgba(4, 13, 11, 0.78)),
+    linear-gradient(180deg, rgba(4, 13, 11, 0.25), rgba(4, 13, 11, 0.82)),
+    url('/bg/bureau-chess-archive.jpeg') center 42% / cover fixed no-repeat,
     var(--bureau-950);
   font-family: 'Newsreader', Georgia, serif;
   scroll-behavior: smooth;
@@ -236,8 +237,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(4, 13, 11, 0.92), rgba(9, 22, 19, 0.4) 72%, rgba(4, 13, 11, 0.75)),
-    linear-gradient(180deg, rgba(17, 34, 30, 0.48), transparent 42%, rgba(4, 13, 11, 0.95));
+    linear-gradient(90deg, rgba(4, 13, 11, 0.82), rgba(9, 22, 19, 0.22) 68%, rgba(4, 13, 11, 0.68)),
+    linear-gradient(180deg, rgba(17, 34, 30, 0.3), transparent 42%, rgba(4, 13, 11, 0.9));
 }
 
 .bureau-protocol {
@@ -960,6 +961,11 @@
 }
 
 @media (max-width: 620px) {
+  .bureau {
+    background-position: center 24%;
+    background-attachment: scroll;
+  }
+
   .bureau-header__inner {
     padding-inline: 0.85rem;
   }
