@@ -22,9 +22,10 @@
   overflow-x: clip;
   color: var(--bureau-paper);
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(35, 68, 61, 0.38), transparent 68%),
-    linear-gradient(90deg, rgba(4, 13, 11, 0.84), rgba(9, 22, 19, 0.42) 54%, rgba(4, 13, 11, 0.78)),
-    linear-gradient(180deg, rgba(4, 13, 11, 0.25), rgba(4, 13, 11, 0.82)),
+    radial-gradient(ellipse at 50% 0%, rgba(35, 68, 61, 0.28), transparent 68%),
+    linear-gradient(90deg, rgba(4, 13, 11, 0.54), rgba(9, 22, 19, 0.2) 54%, rgba(4, 13, 11, 0.5)),
+    linear-gradient(180deg, rgba(4, 13, 11, 0.12), rgba(4, 13, 11, 0.66)),
+    url('/bg/bureau-mathematical-sidework.png') center top / cover fixed no-repeat,
     var(--bureau-950);
   font-family: 'Newsreader', Georgia, serif;
   scroll-behavior: smooth;
@@ -258,8 +259,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(4, 13, 11, 0.82), rgba(9, 22, 19, 0.22) 68%, rgba(4, 13, 11, 0.68)),
-    linear-gradient(180deg, rgba(17, 34, 30, 0.3), transparent 42%, rgba(4, 13, 11, 0.9));
+    linear-gradient(90deg, rgba(4, 13, 11, 0.7), rgba(9, 22, 19, 0.12) 68%, rgba(4, 13, 11, 0.56)),
+    linear-gradient(180deg, rgba(17, 34, 30, 0.2), transparent 42%, rgba(4, 13, 11, 0.84));
 }
 
 .bureau-protocol {
