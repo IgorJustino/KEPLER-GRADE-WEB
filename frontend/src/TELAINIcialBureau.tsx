@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { BookStoreScreen } from './BookStoreScreen';
 import { DynamicChessHeroCanvas } from './DynamicChessHeroCanvas';
 import { KoiFishCanvas } from './KoiFishCanvas';
 import './landing-bureau.css';
@@ -374,6 +375,35 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
         </div>
       </section>
 
+      <section
+        id="biblioteca-fluxogramas"
+        className="bureau-bookstore-section"
+        aria-label="Biblioteca interativa de livros e fluxogramas"
+      >
+        <div className="bureau-bookstore-section__head">
+          <div>
+            <p>Atlas Interativo · Fluxogramas UnB</p>
+            <h2>Abra os livros e explore cada percurso acadêmico.</h2>
+          </div>
+          <span>
+            Selecione um campus, abra o livro e escolha o curso para visualizar
+            o fluxograma completo de disciplinas e dependências.
+          </span>
+        </div>
+
+        <div className="bureau-bookstore-frame">
+          <BookStoreScreen
+            embedded
+            theme={design}
+            onNavigateScreen={(screen) => {
+              if (screen === 'landing') window.scrollTo({ top: 0, behavior: 'smooth' });
+              else onEnterSimulator(screen);
+            }}
+            onSelectCourseToast={() => undefined}
+          />
+        </div>
+      </section>
+
       <section id="bureau-dossie" className="bureau-section bureau-section--deep">
         <div className="bureau-section__inner">
           <header className="bureau-section__head">
@@ -493,7 +523,15 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
         </div>
       </footer>
 
-      <button type="button" className="bureau-library" onClick={onGoToBookStore}>
+      <button
+        type="button"
+        className="bureau-library"
+        onClick={() => {
+          const library = document.getElementById('biblioteca-fluxogramas');
+          if (library) library.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          else onGoToBookStore();
+        }}
+      >
         <span aria-hidden="true">▤</span>
         <strong>Biblioteca FGA</strong>
       </button>

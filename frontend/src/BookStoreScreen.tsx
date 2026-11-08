@@ -7,6 +7,7 @@ function renderCoverArt(book: BookDefinition) {
   if (book.coverArtType === 'darcy-artes') {
     return (
       <div
+        className="kepler-book-cover kepler-book-cover--darcy-artes"
         style={{
           width: '100%',
           height: '100%',
@@ -59,6 +60,7 @@ function renderCoverArt(book: BookDefinition) {
   if (book.coverArtType === 'darcy-exatas') {
     return (
       <div
+        className="kepler-book-cover kepler-book-cover--darcy-exatas"
         style={{
           width: '100%',
           height: '100%',
@@ -112,6 +114,7 @@ function renderCoverArt(book: BookDefinition) {
   if (book.coverArtType === 'gama-fcte') {
     return (
       <div
+        className="kepler-book-cover kepler-book-cover--gama"
         style={{
           width: '100%',
           height: '100%',
@@ -164,6 +167,7 @@ function renderCoverArt(book: BookDefinition) {
   if (book.coverArtType === 'ceilandia-fce') {
     return (
       <div
+        className="kepler-book-cover kepler-book-cover--ceilandia"
         style={{
           width: '100%',
           height: '100%',
@@ -215,6 +219,7 @@ function renderCoverArt(book: BookDefinition) {
   // Campus Planaltina
   return (
     <div
+      className="kepler-book-cover kepler-book-cover--planaltina"
       style={{
         width: '100%',
         height: '100%',
@@ -374,9 +379,13 @@ function renderCoursePage(
 export function BookStoreScreen({
   onNavigateScreen,
   onSelectCourseToast,
+  embedded = false,
+  theme = 'bureau',
 }: {
   onNavigateScreen: (s: ScreenId) => void;
   onSelectCourseToast: (msg: string) => void;
+  embedded?: boolean;
+  theme?: 'gazette' | 'bureau';
 }) {
   // Começa no livro central: Gama FCTE (índice 2)
   const [activeBookIdx, setActiveBookIdx] = useState<number>(2);
@@ -387,8 +396,11 @@ export function BookStoreScreen({
 
   const activeBook = CAMPUS_BOOKS_DATA[activeBookIdx];
   const isBookOpen = flippedSheet > 0;
+  const isGazette = theme === 'gazette';
 
   useEffect(() => {
+    if (embedded) return undefined;
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (selectedCourseModal) {
@@ -412,7 +424,7 @@ export function BookStoreScreen({
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isBookOpen, selectedCourseModal]);
+  }, [embedded, isBookOpen, selectedCourseModal]);
 
   const selectOrOpenBook = (idx: number) => {
     if (idx !== activeBookIdx) {
@@ -441,6 +453,7 @@ export function BookStoreScreen({
 
   return (
     <div
+      className={`kepler-bookstore kepler-bookstore--${theme}`}
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
@@ -449,16 +462,18 @@ export function BookStoreScreen({
       }}
       onMouseLeave={() => setMouseTilt({ x: 0, y: 0 })}
       style={{
-        minHeight: 'calc(100vh - 30px)',
-        backgroundColor: '#8A7E6A',
+        minHeight: embedded ? 'clamp(680px, 88svh, 860px)' : 'calc(100vh - 30px)',
+        backgroundColor: isGazette ? '#0A211B' : '#2B190E',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: '16px 28px 20px',
         position: 'relative',
         overflow: 'hidden',
-        borderRadius: 18,
-        boxShadow: 'inset 0 0 95px rgba(32, 26, 18, 0.45)',
+        borderRadius: embedded ? 14 : 18,
+        boxShadow: isGazette
+          ? 'inset 0 0 110px rgba(0, 15, 12, 0.72)'
+          : 'inset 0 0 110px rgba(22, 10, 4, 0.68)',
       }}
     >
       {/* CAMADA 0: FUNDO GIOVANNI BOCCHI + JORNAL COM PARALLAX */}
@@ -466,10 +481,17 @@ export function BookStoreScreen({
         style={{
           position: 'absolute',
           inset: -28,
-          backgroundImage: `
-            radial-gradient(ellipse at 50% 48%, rgba(28, 18, 10, 0.04) 0%, rgba(20, 13, 7, 0.38) 100%),
-            url('/bg/brasilis-bocchi-newspaper.jpg')
-          `,
+          backgroundImage: isGazette
+            ? `
+              radial-gradient(ellipse at 50% 48%, rgba(7, 31, 25, 0.08) 0%, rgba(2, 17, 14, 0.72) 100%),
+              linear-gradient(rgba(11, 42, 34, 0.24), rgba(4, 25, 21, 0.5)),
+              url('/bg/bureau-mathematical-sidework.png')
+            `
+            : `
+              radial-gradient(ellipse at 50% 48%, rgba(28, 18, 10, 0.02) 0%, rgba(20, 9, 3, 0.64) 100%),
+              linear-gradient(rgba(64, 35, 16, 0.1), rgba(28, 13, 5, 0.48)),
+              url('/bg/bureau-brasil-atlantico-fauna.webp')
+            `,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           transform: `translate3d(${-mouseTilt.x * 14}px, ${-mouseTilt.y * 10}px, 0) scale(1.045)`,
@@ -527,6 +549,7 @@ export function BookStoreScreen({
           TOP BAR + LEGENDA COMPACTA ELEVADA (NÃO ENCOBRE O LIVRO 3D!)
       ==================================================================== */}
       <header
+        className="kepler-bookstore__toolbar"
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -536,6 +559,7 @@ export function BookStoreScreen({
         }}
       >
         <div
+          className="kepler-bookstore__brand"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -574,6 +598,7 @@ export function BookStoreScreen({
 
         {/* Legenda compacta central, elevada no topo */}
         <div
+          className="kepler-bookstore__legend"
           style={{
             background: 'rgba(28, 22, 16, 0.76)',
             backdropFilter: 'blur(12px)',
@@ -595,7 +620,7 @@ export function BookStoreScreen({
           </span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div className="kepler-bookstore__actions" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <button
             onClick={() => setFlippedSheet((prev) => (prev === 0 ? 1 : 0))}
             style={{
@@ -842,7 +867,6 @@ export function BookStoreScreen({
                   transform: `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) rotateX(${tiltX}deg) rotateY(${
                     rotateY + tiltY
                   }deg) scale(${scale})`,
-                  animation: `bookGentleFloat ${4.2 + idx * 0.45}s ease-in-out infinite`,
                   zIndex: isSelected ? 40 : 25 - absOff,
                   opacity,
                   pointerEvents: 'none',

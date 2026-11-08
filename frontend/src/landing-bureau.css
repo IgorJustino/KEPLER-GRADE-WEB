@@ -527,6 +527,59 @@
   font-style: normal;
 }
 
+.bureau-bookstore-section {
+  position: relative;
+  padding: clamp(4rem, 7vw, 6rem) 1.5rem;
+  border-bottom: 1px solid rgba(200, 157, 82, 0.3);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(35, 68, 61, 0.3), transparent 48%),
+    var(--bureau-deep);
+  scroll-margin-top: 4.6rem;
+}
+
+.bureau-bookstore-section__head {
+  display: grid;
+  width: 100%;
+  max-width: 88rem;
+  padding-bottom: 1.5rem;
+  margin: 0 auto 2rem;
+  border-bottom: 1px solid rgba(200, 157, 82, 0.34);
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+  align-items: end;
+  gap: 2rem;
+}
+
+.bureau-bookstore-section__head p {
+  margin: 0;
+  color: var(--bureau-brass);
+  font: 800 0.64rem/1.4 'JetBrains Mono', monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.bureau-bookstore-section__head h2 {
+  max-width: 58rem;
+  margin: 0.45rem 0 0;
+  color: var(--bureau-paper);
+  font: 800 clamp(2.1rem, 4vw, 3.5rem)/1.02 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.035em;
+}
+
+.bureau-bookstore-section__head > span {
+  color: var(--bureau-paper-muted);
+  font: italic 400 1rem/1.55 'Newsreader', Georgia, serif;
+}
+
+.bureau-bookstore-frame {
+  width: 100%;
+  max-width: 92rem;
+  margin-inline: auto;
+  border: 1px solid rgba(200, 157, 82, 0.5);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.48);
+}
+
 .bureau-record::before {
   content: '❖';
   position: absolute;
@@ -1028,11 +1081,8 @@
     grid-template-columns: 1fr;
   }
 
-  .bureau-dispatch {
-    width: min(100%, 38rem);
-  }
-
-  .bureau-section__head {
+  .bureau-section__head,
+  .bureau-bookstore-section__head {
     grid-template-columns: 1fr;
   }
 
@@ -1059,6 +1109,14 @@
 }
 
 @media (max-width: 620px) {
+  .bureau-bookstore-section {
+    padding-inline: 0.75rem;
+  }
+
+  .bureau-bookstore-frame {
+    border-radius: 10px;
+  }
+
   .bureau::before {
     background-position: center top;
     background-size: cover;
@@ -1393,6 +1451,12 @@
   background:
     radial-gradient(circle at 50% 0%, rgba(118, 72, 35, 0.38), transparent 55%),
     var(--bureau-950);
+}
+
+.bureau--bureau .bureau-bookstore-section {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(118, 72, 35, 0.36), transparent 48%),
+    var(--bureau-deep);
 }
 
 .bureau--bureau .bureau-library {

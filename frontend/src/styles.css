@@ -905,10 +905,212 @@ button, input, select {
   }
 }
 
-@keyframes bookGentleFloat {
-  0% { margin-top: 0px; }
-  50% { margin-top: -7px; }
-  100% { margin-top: 0px; }
+/* Atlas dos Campi: encadernações cartográficas da biblioteca KEPLER. */
+.kepler-book-cover {
+  --cover-leather-a: #51271b;
+  --cover-leather-b: #25130d;
+  --cover-ink: #34150f;
+  --cover-metal: #d0a45a;
+  isolation: isolate;
+  padding: 26px 22px 22px !important;
+  border: 3px double rgba(226, 190, 121, 0.72) !important;
+  border-radius: 2px 12px 12px 2px;
+  color: #f1dfb9;
+  background:
+    linear-gradient(112deg, rgba(255, 224, 156, 0.1), transparent 24%, rgba(0, 0, 0, 0.2) 76%),
+    linear-gradient(155deg, var(--cover-leather-a), var(--cover-leather-b)) !important;
+  box-shadow:
+    inset 0 0 0 5px rgba(25, 12, 7, 0.38),
+    inset 0 0 44px rgba(0, 0, 0, 0.48);
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+.kepler-book-cover::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: '';
+  opacity: 0.58;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(255, 233, 177, 0.16) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 68%, rgba(0, 0, 0, 0.22) 0 1px, transparent 1.8px),
+    repeating-linear-gradient(78deg, transparent 0 7px, rgba(255, 255, 255, 0.025) 8px 9px);
+  background-size: 13px 17px, 19px 23px, auto;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.kepler-book-cover::after {
+  position: absolute;
+  z-index: 1;
+  inset: 10px;
+  content: '';
+  border: 1px solid rgba(231, 198, 130, 0.66);
+  outline: 1px solid rgba(34, 15, 8, 0.72);
+  outline-offset: 3px;
+  background:
+    linear-gradient(135deg, var(--cover-metal) 0 7px, transparent 7px) top left,
+    linear-gradient(225deg, var(--cover-metal) 0 7px, transparent 7px) top right,
+    linear-gradient(45deg, var(--cover-metal) 0 7px, transparent 7px) bottom left,
+    linear-gradient(315deg, var(--cover-metal) 0 7px, transparent 7px) bottom right;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+
+.kepler-book-cover--darcy-artes {
+  --cover-leather-a: #6d3428;
+  --cover-leather-b: #29130f;
+  --cover-ink: #421a12;
+  --cover-metal: #d6a45e;
+}
+
+.kepler-book-cover--darcy-exatas {
+  --cover-leather-a: #2e4d4b;
+  --cover-leather-b: #102624;
+  --cover-ink: #102f2c;
+  --cover-metal: #cfad67;
+}
+
+.kepler-book-cover--gama {
+  --cover-leather-a: #8b3824;
+  --cover-leather-b: #3b140d;
+  --cover-ink: #551b11;
+  --cover-metal: #e0af5c;
+}
+
+.kepler-book-cover--ceilandia {
+  --cover-leather-a: #315441;
+  --cover-leather-b: #14271d;
+  --cover-ink: #173728;
+  --cover-metal: #cdb878;
+}
+
+.kepler-book-cover--planaltina {
+  --cover-leather-a: #68602d;
+  --cover-leather-b: #28240f;
+  --cover-ink: #3b3515;
+  --cover-metal: #d0ae56;
+}
+
+.kepler-book-cover > svg {
+  z-index: 0;
+  inset: 34px 14px 22px !important;
+  width: calc(100% - 28px) !important;
+  height: calc(100% - 56px) !important;
+  opacity: 0.34 !important;
+  filter: sepia(0.8) brightness(1.55) contrast(0.86);
+  mix-blend-mode: screen;
+}
+
+.kepler-book-cover > div:nth-of-type(1) {
+  z-index: 3 !important;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(226, 190, 121, 0.55);
+}
+
+.kepler-book-cover > div:nth-of-type(1) > span:first-child {
+  color: #ead7aa !important;
+  font: 700 8px/1.25 'JetBrains Mono', monospace !important;
+  letter-spacing: 0.13em !important;
+}
+
+.kepler-book-cover > div:nth-of-type(1) > span:last-child {
+  padding: 3px 7px !important;
+  border: 1px solid rgba(244, 217, 159, 0.64);
+  border-radius: 2px !important;
+  color: #f6e6c1 !important;
+  background: rgba(18, 9, 6, 0.48) !important;
+  font: 800 8px/1 'JetBrains Mono', monospace !important;
+  letter-spacing: 0.12em;
+}
+
+.kepler-book-cover > div:nth-of-type(2) {
+  z-index: 3 !important;
+  padding: 13px 14px 12px !important;
+  border: 3px double color-mix(in srgb, var(--cover-ink) 78%, #c89d52) !important;
+  border-radius: 2px !important;
+  color: #2b1c11;
+  background:
+    repeating-linear-gradient(0deg, rgba(58, 38, 21, 0.035) 0 1px, transparent 1px 5px),
+    #eadbb8 !important;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.34),
+    inset 0 0 18px rgba(92, 58, 26, 0.14) !important;
+}
+
+.kepler-book-cover > div:nth-of-type(2) > div:first-child {
+  color: var(--cover-ink) !important;
+  font: 800 8px/1.25 'JetBrains Mono', monospace !important;
+  letter-spacing: 0.1em !important;
+}
+
+.kepler-book-cover > div:nth-of-type(2) > div:nth-child(2) {
+  margin-top: 3px !important;
+  color: #26180f !important;
+  font: 900 20px/1.02 'Playfair Display', Georgia, serif !important;
+  letter-spacing: -0.025em;
+}
+
+.kepler-book-cover > div:nth-of-type(2) > div:last-child {
+  margin-top: 6px !important;
+  color: #60472f !important;
+  font: 600 9px/1.3 'Newsreader', Georgia, serif !important;
+}
+
+.kepler-book-cover > div:nth-of-type(3) {
+  z-index: 3 !important;
+  padding: 7px 8px !important;
+  border: 1px solid rgba(225, 188, 111, 0.68);
+  border-radius: 1px !important;
+  color: #f3deb3 !important;
+  background: color-mix(in srgb, var(--cover-ink) 82%, black) !important;
+  font: 700 7.5px/1.2 'JetBrains Mono', monospace !important;
+  letter-spacing: 0.13em !important;
+}
+
+@media (max-width: 620px) {
+  .kepler-bookstore {
+    padding-inline: 12px !important;
+  }
+
+  .kepler-bookstore__toolbar {
+    gap: 7px;
+  }
+
+  .kepler-bookstore__brand {
+    flex: 0 0 auto;
+    padding-right: 5px !important;
+  }
+
+  .kepler-bookstore__brand > span {
+    display: none;
+  }
+
+  .kepler-bookstore__legend {
+    min-width: 0;
+    flex: 1 1 auto;
+    padding-inline: 10px !important;
+    gap: 0 !important;
+  }
+
+  .kepler-bookstore__legend > span:first-child {
+    display: block;
+    overflow: hidden;
+    font-size: 12px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .kepler-bookstore__legend > span:nth-child(2),
+  .kepler-bookstore__legend > span:nth-child(3),
+  .kepler-bookstore__actions > button:last-child {
+    display: none !important;
+  }
+
+  .kepler-bookstore__actions {
+    flex: 0 0 auto;
+  }
 }
 
 @keyframes bookSpreadReveal {
