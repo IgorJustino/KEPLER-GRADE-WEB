@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { KeplerState, OfferingItem, ScreenId, SubjectItem } from './types';
 import { BookStoreScreen } from './BookStoreScreen';
-import { DataSightLandingScreen } from './DataSightLandingScreen';
+import { TELAINIcial } from './TELAINIcial';
 
 const COLOR_HEX: Record<string, string> = {
   orange: '#FF5A1F',
@@ -114,6 +114,16 @@ export function App() {
     );
   }, [state, selectedSubjCode]);
 
+  if (activeScreen === 'landing') {
+    return (
+      <TELAINIcial
+        onGoToBookStore={() => setActiveScreen(5)}
+        onEnterSimulator={(screen) => setActiveScreen((screen as ScreenId) ?? 0)}
+        onOpenFlowchart={() => setActiveScreen(1)}
+      />
+    );
+  }
+
   if (!state) {
     return (
       <div
@@ -193,16 +203,6 @@ export function App() {
       count: '3D',
     },
   ];
-
-  if (activeScreen === 'landing') {
-    return (
-      <DataSightLandingScreen
-        onGoToBookStore={() => setActiveScreen(5)}
-        onEnterSimulator={(scr) => setActiveScreen((scr as ScreenId) ?? 0)}
-        onOpenFlowchart={() => setActiveScreen(1)}
-      />
-    );
-  }
 
   return (
     <>
