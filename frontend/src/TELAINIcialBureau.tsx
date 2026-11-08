@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { KoiFishCanvas } from './KoiFishCanvas';
 import './landing-bureau.css';
 
 interface TELAINIcialBureauProps {
@@ -269,6 +270,7 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
       </header>
 
       <section className="bureau-hero">
+        <KoiFishCanvas interactive={true} />
         <AstrolabeCanvas />
         <div className="bureau-wind" aria-hidden="true">
           <img

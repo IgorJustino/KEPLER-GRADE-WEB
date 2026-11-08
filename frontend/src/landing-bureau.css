@@ -38,8 +38,8 @@
   left: 0;
   width: 100%;
   height: calc(100svh - 4.6rem);
-  background: url('/bg/bureau-mathematical-sidework.png') center / cover no-repeat;
-  opacity: 0.9;
+  background: url('/bg/brasilis-bocchi-newspaper.jpg') center / cover no-repeat;
+  opacity: 0.86;
   pointer-events: none;
 }
 
