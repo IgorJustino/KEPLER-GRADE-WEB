@@ -292,6 +292,50 @@ export const TELAINIcialBureau: React.FC<TELAINIcialBureauProps> = ({
             draggable={false}
             decoding="async"
           />
+          <img
+            className="bureau-wind__paper bureau-wind__paper--center-top"
+            src="/bg/bureau-paper-center-top.webp"
+            alt=""
+            draggable={false}
+            decoding="async"
+          />
+          <img
+            className="bureau-wind__paper bureau-wind__paper--center-bottom"
+            src="/bg/bureau-paper-center-bottom.webp"
+            alt=""
+            draggable={false}
+            decoding="async"
+          />
+          <svg
+            className="bureau-kepler-motion"
+            viewBox="0 0 1000 700"
+            preserveAspectRatio="none"
+            focusable="false"
+          >
+            <ellipse className="bureau-kepler-motion__orbit bureau-kepler-motion__orbit--outer" cx="500" cy="390" rx="122" ry="70" pathLength="1" />
+            <circle className="bureau-kepler-motion__focus" cx="456" cy="390" r="3" />
+            <circle className="bureau-kepler-motion__planet bureau-kepler-motion__planet--outer" r="5">
+              <animateMotion
+                dur="9s"
+                repeatCount="indefinite"
+                calcMode="spline"
+                keyTimes="0;0.5;1"
+                keySplines="0.2 0.75 0.35 1;0.65 0 0.8 0.25"
+                path="M 622 390 A 122 70 0 1 1 378 390 A 122 70 0 1 1 622 390"
+              />
+            </circle>
+            <g transform="rotate(-18 500 390)">
+              <ellipse className="bureau-kepler-motion__orbit bureau-kepler-motion__orbit--inner" cx="500" cy="390" rx="82" ry="47" pathLength="1" />
+              <circle className="bureau-kepler-motion__planet bureau-kepler-motion__planet--inner" r="3.5">
+                <animateMotion
+                  dur="6.5s"
+                  repeatCount="indefinite"
+                  path="M 582 390 A 82 47 0 1 1 418 390 A 82 47 0 1 1 582 390"
+                />
+              </circle>
+            </g>
+            <text className="bureau-kepler-motion__formula" x="540" y="300" textAnchor="middle">T² ∝ a³</text>
+          </svg>
         </div>
         <div className="bureau-hero__shade" aria-hidden="true" />
         <span className="bureau-protocol">Protocolo SIGAA: 2026/2 · Lavrado</span>
