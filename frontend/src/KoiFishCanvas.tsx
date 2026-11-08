@@ -24,9 +24,9 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
     };
     window.addEventListener('resize', handleResize);
 
-    // Carrega o fundo de arte de jornal com mapa histórico (mesmo da tela de livros)
+    // Carrega o mapa do Bureau, com o Brasil à esquerda e o Atlântico livre para as carpas.
     const newspaperImg = new Image();
-    newspaperImg.src = '/bg/brasilis-bocchi-newspaper.jpg';
+    newspaperImg.src = '/bg/bureau-brasil-atlantico-fauna.webp';
     let mapLoaded = false;
     newspaperImg.onload = () => {
       mapLoaded = true;
@@ -455,8 +455,9 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
     }
 
     // Instancia as duas carpas em arte jornal
-    const fish1 = new NewspaperKoiFish(0, Math.min(width, height) * 0.31, Math.min(width, height) * 0.27, 'carmine-stamp');
-    const fish2 = new NewspaperKoiFish(Math.PI, Math.min(width, height) * 0.31, Math.min(width, height) * 0.27, 'ink-woodcut');
+    const oceanCenterOffset = width * 0.16;
+    const fish1 = new NewspaperKoiFish(0, Math.min(width, height) * 0.28, Math.min(width, height) * 0.27, 'carmine-stamp', oceanCenterOffset);
+    const fish2 = new NewspaperKoiFish(Math.PI, Math.min(width, height) * 0.28, Math.min(width, height) * 0.27, 'ink-woodcut', oceanCenterOffset);
 
     // =========================================================================
     // LOOP PRINCIPAL (ESTILO ARTE JORNAL HISTÓRICA & MAPA)
@@ -465,12 +466,39 @@ export const KoiFishCanvas: React.FC<KoiFishCanvasProps> = ({ interactive = true
     const render = () => {
       time += 0.016;
 
-      // 1. Renderiza o mapa com arte de jornal de fundo (mesmo da tela de livros)
+      // 1. Renderiza o mapa sem distorção, cobrindo toda a área do hero.
       if (mapLoaded && newspaperImg.width > 0) {
-        ctx.drawImage(newspaperImg, 0, 0, width, height);
+        const imageRatio = newspaperImg.width / newspaperImg.height;
+        const canvasRatio = width / height;
+        let sourceX = 0;
+        let sourceY = 0;
+        let sourceWidth = newspaperImg.width;
+        let sourceHeight = newspaperImg.height;
 
-        // Pátina sépia de jornal envelhecido suave
-        ctx.fillStyle = 'rgba(38, 28, 18, 0.42)';
+        if (canvasRatio > imageRatio) {
+          sourceHeight = newspaperImg.width / canvasRatio;
+          sourceY = (newspaperImg.height - sourceHeight) / 2;
+        } else {
+          sourceWidth = newspaperImg.height * canvasRatio;
+          // Preserva o território brasileiro e suas ilustrações; o excesso é
+          // recortado apenas no extremo direito do Atlântico.
+          sourceX = 0;
+        }
+
+        ctx.drawImage(
+          newspaperImg,
+          sourceX,
+          sourceY,
+          sourceWidth,
+          sourceHeight,
+          0,
+          0,
+          width,
+          height
+        );
+
+        // Pátina quente leve para integrar o mapa à interface sem apagar o oceano.
+        ctx.fillStyle = 'rgba(38, 28, 18, 0.24)';
         ctx.fillRect(0, 0, width, height);
       } else {
         // Fallback no tom de pergaminho de jornal

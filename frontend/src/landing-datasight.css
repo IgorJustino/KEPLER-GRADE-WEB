@@ -20,10 +20,10 @@
   background-color: #1a130c;
   background-image:
     radial-gradient(ellipse at 50% 25%, rgba(244, 235, 217, 0.04) 0%, rgba(20, 14, 8, 0.65) 60%, rgba(12, 8, 4, 0.92) 100%),
-    url('/bg/brasilis-bocchi-newspaper.jpg');
+    url('/bg/bureau-brasil-atlantico-fauna.webp');
   background-size: cover;
   background-attachment: fixed;
-  background-position: center center;
+  background-position: left center;
   color: #f7f1e5;
   min-height: 100vh;
   position: relative;
@@ -200,8 +200,8 @@
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 40%, rgba(20, 14, 8, 0.15) 0%, rgba(20, 14, 8, 0.55) 60%, rgba(12, 8, 4, 0.92) 100%),
-    linear-gradient(90deg, rgba(16, 11, 7, 0.9) 0%, rgba(16, 11, 7, 0.35) 50%, rgba(16, 11, 7, 0.85) 100%);
+    radial-gradient(ellipse at 58% 40%, rgba(20, 14, 8, 0.04) 0%, rgba(20, 14, 8, 0.22) 66%, rgba(12, 8, 4, 0.7) 100%),
+    linear-gradient(90deg, rgba(16, 11, 7, 0.76) 0%, rgba(16, 11, 7, 0.24) 38%, rgba(16, 11, 7, 0.1) 70%, rgba(16, 11, 7, 0.48) 100%);
   position: absolute;
   inset: 0;
 }
